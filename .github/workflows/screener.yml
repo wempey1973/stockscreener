@@ -65,24 +65,27 @@ jobs:
       - name: Fall back if history update failed
         if: steps.run_screener.outcome == 'success' && steps.update_history.outcome != 'success'
         run: |
-          printf 'symbol,note\n,"History sheet update failed this run -- new-name diff unavailable this week. See the workflow logs. Full results are attached separately."\n' > new_this_week.csv
+          for f in new_this_week.csv new_this_week_distress.csv; do
+            printf 'symbol,note\n,"History sheet update failed this run -- new-name diff unavailable this week. See the workflow logs. Full results are attached separately."\n' > "$f"
+          done
 
       # Committed (not just uploaded as an artifact) so the weekly one-pager
       # research routine -- a separate Claude Code cloud agent that can't
       # access this repo's Actions artifacts or local files -- can read it
       # via a plain git clone.
-      - name: Commit weekly candidate list for the research routine
+      - name: Commit weekly candidate lists for the research routine
         if: steps.run_screener.outcome == 'success'
         run: |
           mkdir -p weekly-lists
           cp new_this_week.csv weekly-lists/candidates.csv
+          cp new_this_week_distress.csv weekly-lists/candidates_distress.csv
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add weekly-lists/candidates.csv
+          git add weekly-lists/candidates.csv weekly-lists/candidates_distress.csv
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update weekly candidate list ($(date -u +%Y-%m-%d))"
+            git commit -m "Update weekly candidate lists ($(date -u +%Y-%m-%d))"
             git push origin HEAD:main
           fi
 
@@ -93,7 +96,9 @@ jobs:
           name: screener-results
           path: |
             screener_results.csv
+            distress_results.csv
             new_this_week.csv
+            new_this_week_distress.csv
 
       - name: Email results
         if: steps.run_screener.outcome == 'success'
@@ -106,5 +111,5 @@ jobs:
           subject: "Stock Screener - ${{ steps.update_history.outcome == 'success' && 'New Names' || 'Results (history update failed)' }} - ${{ github.event.repository.name }}"
           to: warrenempey@gmail.com
           from: Stock Screener <${{ secrets.GMAIL_USERNAME }}>
-          body: "Attached are this week's newly qualifying companies (names never seen on a previous run). Full run results are also attached for reference."
-          attachments: new_this_week.csv,screener_results.csv
+          body: "Attached are this week's newly qualifying companies from both screens: the up-screen (appreciated >35%, opportunistic raise candidates) and the distress-screen (declined >25%, capital-need candidates), plus full results for each for reference."
+          attachments: new_this_week.csv,new_this_week_distress.csv,screener_results.csv,distress_results.csv

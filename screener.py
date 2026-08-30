@@ -1,11 +1,16 @@
 """
-Two-stage stock screener:
-  1. Find US companies with market cap between $150M and $2B that have
-     appreciated more than 35% over the trailing year (universe + market
-     cap from NASDAQ's free public screener, 1-year return from yfinance).
-  2. Narrow that list to companies that have not filed a primary stock
-     offering (S-1/F-1 or a priced 424B prospectus) in the past 15 months
-     (via SEC EDGAR).
+Two parallel screens over the same US market-cap universe ($100M-$3B,
+via NASDAQ's free public screener), each narrowed by SEC EDGAR to exclude
+companies that already filed a primary stock offering (S-1/F-1, a priced
+424B prospectus, or a Form D private placement):
+
+  1. Up-screen: appreciated more than 35% over the trailing year (1-year
+     return from yfinance), no offering in the past 15 months. Opportunistic
+     equity-raise candidates -- stock strength makes a raise less dilutive.
+  2. Distress-screen: declined more than 25% over the trailing year, no
+     offering in the past 6 months (shorter lookback -- distress situations
+     move faster, and a 15-month-old raise says little about current need).
+     Companies that plausibly need capital despite unfavorable pricing.
 
 Requires env var SEC_USER_AGENT (SEC requires a descriptive User-Agent
 like "Name contact@email.com" on every request).
@@ -33,10 +38,12 @@ NASDAQ_HEADERS = {
 SEC_SUBMISSIONS_URL = "https://data.sec.gov/submissions/CIK{cik}.json"
 SEC_TICKER_MAP_URL = "https://www.sec.gov/files/company_tickers.json"
 
-MARKET_CAP_MIN = 150_000_000
-MARKET_CAP_MAX = 2_000_000_000
+MARKET_CAP_MIN = 100_000_000
+MARKET_CAP_MAX = 3_000_000_000
 MIN_1Y_RETURN_PCT = 35.0
+MAX_1Y_DECLINE_PCT = -25.0
 OFFERING_LOOKBACK_MONTHS = 15
+DISTRESS_OFFERING_LOOKBACK_MONTHS = 6
 
 # Filings that reliably indicate an actual (or IPO-style) primary offering,
 # as opposed to an S-3 shelf registration (which only reserves capacity and
@@ -134,6 +141,7 @@ YFINANCE_CHUNK_DELAY = 2.0
 SEC_REQUEST_DELAY = 0.15
 
 OUTPUT_FILE = "screener_results.csv"
+DISTRESS_OUTPUT_FILE = "distress_results.csv"
 
 
 def months_ago(months):
@@ -219,11 +227,15 @@ def chunked(seq, size):
         yield seq[i:i + size]
 
 
-def filter_by_appreciation(candidates):
+def compute_returns(candidates):
+    """One yfinance pass over the whole candidate universe, annotating each
+    candidate dict with oneYearReturnPct. Feeds both the appreciation
+    (up) and decline (distress) screens so price history is only fetched
+    once per symbol regardless of how many direction filters run after it."""
     print(f"Step 1b: checking 1-year return for {len(candidates)} candidates via yfinance...")
     by_symbol = {c["symbol"]: c for c in candidates}
     symbols = list(by_symbol.keys())
-    survivors = []
+    computed = []
 
     for chunk in chunked(symbols, YFINANCE_CHUNK_SIZE):
         try:
@@ -241,14 +253,28 @@ def filter_by_appreciation(candidates):
             if len(closes) < 2:
                 continue
             ret = (closes.iloc[-1] / closes.iloc[0] - 1) * 100
-            if ret > MIN_1Y_RETURN_PCT:
-                c = by_symbol[symbol]
-                c["oneYearReturnPct"] = round(float(ret), 2)
-                survivors.append(c)
-                print(f"  {symbol}: +{ret:.1f}% -> kept")
+            c = by_symbol[symbol]
+            c["oneYearReturnPct"] = round(float(ret), 2)
+            computed.append(c)
         time.sleep(YFINANCE_CHUNK_DELAY)
 
+    print(f"  computed 1-year return for {len(computed)} candidates")
+    return computed
+
+
+def filter_by_appreciation(candidates_with_returns):
+    survivors = [c for c in candidates_with_returns if c["oneYearReturnPct"] > MIN_1Y_RETURN_PCT]
+    for c in survivors:
+        print(f"  {c['symbol']}: +{c['oneYearReturnPct']:.1f}% -> kept (up-screen)")
     print(f"  {len(survivors)} companies appreciated more than {MIN_1Y_RETURN_PCT}% over 1 year")
+    return survivors
+
+
+def filter_by_decline(candidates_with_returns):
+    survivors = [c for c in candidates_with_returns if c["oneYearReturnPct"] < MAX_1Y_DECLINE_PCT]
+    for c in survivors:
+        print(f"  {c['symbol']}: {c['oneYearReturnPct']:.1f}% -> kept (distress-screen)")
+    print(f"  {len(survivors)} companies declined more than {abs(MAX_1Y_DECLINE_PCT)}% over 1 year")
     return survivors
 
 
@@ -300,9 +326,8 @@ def has_recent_offering(cik, submissions, cutoff_date):
     return False
 
 
-def filter_by_no_offering(survivors):
-    ticker_map = load_ticker_to_cik_map()
-    cutoff = months_ago(OFFERING_LOOKBACK_MONTHS)
+def filter_by_no_offering(survivors, ticker_map, lookback_months):
+    cutoff = months_ago(lookback_months)
     print(f"Step 2b: excluding companies with an offering-related filing since {cutoff}...")
     final = []
     for i, c in enumerate(survivors, 1):
@@ -327,7 +352,7 @@ def filter_by_no_offering(survivors):
     return final
 
 
-def write_results(rows):
+def write_results(rows, path):
     fieldnames = [
         "symbol", "companyName", "sector", "industry",
         "marketCap", "oneYearReturnPct", "cik",
@@ -341,12 +366,12 @@ def write_results(rows):
         has_score = score is not None
         return (has_score, score if has_score else 0)
 
-    with open(OUTPUT_FILE, "w", newline="", encoding="utf-8") as f:
+    with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
         writer.writeheader()
         for row in sorted(rows, key=sort_key, reverse=True):
             writer.writerow(row)
-    print(f"Wrote {len(rows)} results to {OUTPUT_FILE}")
+    print(f"Wrote {len(rows)} results to {path}")
 
 
 def main():
@@ -356,10 +381,20 @@ def main():
     import capital_need_scoring
 
     candidates = get_candidate_universe()
-    survivors = filter_by_appreciation(candidates)
-    final = filter_by_no_offering(survivors)
-    scored = capital_need_scoring.score_all(final)
-    write_results(scored)
+    with_returns = compute_returns(candidates)
+    ticker_map = load_ticker_to_cik_map()
+
+    print("=== Up-screen: appreciation >35%, no offering in 15 months ===")
+    up_candidates = filter_by_appreciation(with_returns)
+    up_final = filter_by_no_offering(up_candidates, ticker_map, OFFERING_LOOKBACK_MONTHS)
+    up_scored = capital_need_scoring.score_all(up_final)
+    write_results(up_scored, OUTPUT_FILE)
+
+    print("=== Distress-screen: decline >25%, no offering in 6 months ===")
+    down_candidates = filter_by_decline(with_returns)
+    down_final = filter_by_no_offering(down_candidates, ticker_map, DISTRESS_OFFERING_LOOKBACK_MONTHS)
+    down_scored = capital_need_scoring.score_all(down_final)
+    write_results(down_scored, DISTRESS_OUTPUT_FILE)
 
 
 if __name__ == "__main__":

@@ -48,17 +48,24 @@ NASDAQ_ROWS = [
      "industry": "Investment Managers"},  # kept: ambiguous industry but on the operating-company override list
     {"symbol": "PIPE", "name": "Pipeline Corp Common Stock", "country": "United States",
      "marketCap": "700000000", "sector": "Technology", "industry": "Software"},
+    {"symbol": "DIST", "name": "Distress Corp Common Stock", "country": "United States",
+     "marketCap": "700000000", "sector": "Consumer Discretionary", "industry": "Retail"},
+    {"symbol": "DISTOLD", "name": "Distress Old Offering Corp Common Stock", "country": "United States",
+     "marketCap": "700000000", "sector": "Consumer Discretionary", "industry": "Retail"},
 ]
 
-# 1-year returns: AAA +52.3%, BBB +12.1% (filtered out), CCC +41.0%, MRG/OFR +40%
+# 1-year returns: AAA +52.3%, BBB +12.1% (filtered out), CCC +41.0%, MRG/OFR +40%,
+# DIST/DISTOLD -30%/-28% (distress-screen candidates)
 CLOSES = {
     "AAA": [100, 152.3], "BBB": [100, 112.1], "CCC": [100, 141.0],
     "MRG": [100, 140.0], "OFR": [100, 140.0], "PIPE": [100, 145.0],
+    "DIST": [100, 70.0], "DISTOLD": [100, 72.0],
 }
 
 TICKER_TO_CIK = {
     "AAA": "0000000001", "CCC": "0000000003", "MRG": "0000000004",
-    "OFR": "0000000005", "PIPE": "0000000006",
+    "OFR": "0000000005", "PIPE": "0000000006", "DIST": "0000000007",
+    "DISTOLD": "0000000008",
 }
 
 # AAA has a recent 424B4 (real offering) -> should be excluded in step 2
@@ -107,6 +114,27 @@ SEC_FILINGS = {
             "filingDate": ["2026-01-10", "2025-11-01"],
             "accessionNumber": ["0000000006-26-000001", "0000000006-25-000002"],
             "primaryDocument": ["pipe_formd.htm", "pipe_10q.htm"],
+        }}
+    },
+    # DIST has no offering-related filings at all -- kept in the distress screen.
+    "0000000007": {
+        "filings": {"recent": {
+            "form": ["10-K"],
+            "filingDate": ["2025-11-01"],
+            "accessionNumber": ["0000000007-25-000001"],
+            "primaryDocument": ["dist_10k.htm"],
+        }}
+    },
+    # DISTOLD's S-1 is ~8.5 months old: outside the distress screen's 6-month
+    # lookback but inside the up-screen's 15-month one -- proves the
+    # distress screen actually uses the shorter window, not just always
+    # excluding.
+    "0000000008": {
+        "filings": {"recent": {
+            "form": ["S-1", "10-Q"],
+            "filingDate": ["2025-12-15", "2025-11-01"],
+            "accessionNumber": ["0000000008-25-000001", "0000000008-25-000002"],
+            "primaryDocument": ["distold_s1.htm", "distold_10q.htm"],
         }}
     },
 }
@@ -174,12 +202,14 @@ def main():
          mock.patch.object(screener, "load_ticker_to_cik_map", fake_load_ticker_to_cik_map), \
          mock.patch.object(screener, "sec_get", fake_sec_get), \
          mock.patch.object(screener, "OUTPUT_FILE", "test_screener_mock_output.csv"), \
+         mock.patch.object(screener, "DISTRESS_OUTPUT_FILE", "test_screener_mock_distress_output.csv"), \
          mock.patch("time.sleep", lambda *_: None):
 
         candidates = screener.get_candidate_universe()
         candidate_symbols = {c["symbol"] for c in candidates}
         assert candidate_symbols == {
             "AAA", "BBB", "CCC", "MRG", "OFR", "HOLD", "DUPA", "VALU", "PIPE",
+            "DIST", "DISTOLD",
         }, candidate_symbols
         assert "BNK" not in candidate_symbols, "bank should be excluded at step 1a"
         assert "RET" not in candidate_symbols, "REIT should be excluded at step 1a"
@@ -188,33 +218,59 @@ def main():
         assert "BDC1" not in candidate_symbols, "BDC in ambiguous finance industry (no override) should be excluded"
         assert "VALU" in candidate_symbols, "VALU is on the operating-company override list, should be kept"
 
-        survivors = screener.filter_by_appreciation(candidates)
-        survivor_symbols = {c["symbol"] for c in survivors}
-        assert survivor_symbols == {"AAA", "CCC", "MRG", "OFR", "PIPE"}, survivor_symbols
+        with_returns = screener.compute_returns(candidates)
+        ticker_map = screener.load_ticker_to_cik_map()
 
-        final = screener.filter_by_no_offering(survivors)
-        final_symbols = {c["symbol"] for c in final}
-        assert final_symbols == {"CCC", "MRG"}, final_symbols
-        assert "PIPE" not in final_symbols, "Form D private placement should count as a recent offering"
+        # --- Up-screen ---
+        up_candidates = screener.filter_by_appreciation(with_returns)
+        up_symbols = {c["symbol"] for c in up_candidates}
+        assert up_symbols == {"AAA", "CCC", "MRG", "OFR", "PIPE"}, up_symbols
 
-        screener.write_results(final)
+        up_final = screener.filter_by_no_offering(up_candidates, ticker_map, screener.OFFERING_LOOKBACK_MONTHS)
+        up_final_symbols = {c["symbol"] for c in up_final}
+        assert up_final_symbols == {"CCC", "MRG"}, up_final_symbols
+        assert "PIPE" not in up_final_symbols, "Form D private placement should count as a recent offering"
+
+        screener.write_results(up_final, screener.OUTPUT_FILE)
         with open(screener.OUTPUT_FILE, encoding="utf-8") as f:
             content = f.read()
         assert "CCC" in content and "MRG" in content
         assert "AAA" not in content and "OFR" not in content and "PIPE" not in content
         os.remove(screener.OUTPUT_FILE)
 
+        # --- Distress-screen ---
+        down_candidates = screener.filter_by_decline(with_returns)
+        down_symbols = {c["symbol"] for c in down_candidates}
+        assert down_symbols == {"DIST", "DISTOLD"}, down_symbols
+
+        down_final = screener.filter_by_no_offering(
+            down_candidates, ticker_map, screener.DISTRESS_OFFERING_LOOKBACK_MONTHS
+        )
+        down_final_symbols = {c["symbol"] for c in down_final}
+        assert down_final_symbols == {"DIST", "DISTOLD"}, down_final_symbols
+        assert "DISTOLD" in down_final_symbols, (
+            "DISTOLD's 8.5-month-old S-1 is outside the 6-month distress lookback -- should survive"
+        )
+
+        screener.write_results(down_final, screener.DISTRESS_OUTPUT_FILE)
+        with open(screener.DISTRESS_OUTPUT_FILE, encoding="utf-8") as f:
+            distress_content = f.read()
+        assert "DIST" in distress_content and "DISTOLD" in distress_content
+        os.remove(screener.DISTRESS_OUTPUT_FILE)
+
     print("ALL MOCK ASSERTIONS PASSED")
     print("DDD (warrant), EEE (non-US), FFF (cap too high), BNK (bank), RET (REIT), CEF (closed-end fund) "
           "correctly excluded at step 1a")
     print("HOLD correctly KEPT despite 'Shares of Beneficial Interest' naming (not Finance sector)")
     print("DUPB correctly excluded as a lower-market-cap duplicate share class of DUPA (same company)")
-    print("BBB correctly dropped at step 1b (only 12.1% < 35.0% threshold)")
-    print("AAA correctly dropped at step 2 (recent 424B4 primary offering)")
+    print("BBB correctly dropped (only 12.1% < 35.0% threshold, and > -25.0% decline threshold)")
+    print("AAA correctly dropped from up-screen (recent 424B4 primary offering)")
     print("MRG correctly SURVIVED despite a recent 424B3 (it's a merger prospectus, not an offering)")
     print("PIPE correctly EXCLUDED for a Form D private placement")
     print("OFR correctly EXCLUDED for a recent 424B3 that IS a genuine primary offering")
-    print("CCC correctly survived both steps")
+    print("CCC correctly survived the up-screen")
+    print("DIST correctly survived the distress-screen (no offering at all)")
+    print("DISTOLD correctly survived the distress-screen (8.5mo-old S-1 outside the 6mo lookback)")
 
 
 if __name__ == "__main__":

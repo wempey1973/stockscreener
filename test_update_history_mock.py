@@ -22,6 +22,14 @@ CURRENT_RESULTS = [
      "profitability_override": "False", "score_note": ""},
 ]
 
+DISTRESS_RESULTS = [
+    {"symbol": "ZZZ", "companyName": "Zulu Corp", "sector": "Consumer Discretionary", "industry": "Retail",
+     "marketCap": "700000000", "oneYearReturnPct": "-30.0", "cik": "0000000009",
+     "capital_need_score": "70.0", "cash_runway_component": "0.7", "leverage_component": "0.7",
+     "capex_component": "0.7", "sector_component": "0.7", "active_unused_shelf": "True",
+     "profitability_override": "False", "score_note": ""},
+]
+
 
 class FakeWorksheet:
     def __init__(self, existing_rows):
@@ -39,69 +47,117 @@ class FakeWorksheet:
         self._values.extend(rows)
 
 
-def _write_results_csv(rows):
-    with open(update_history.RESULTS_FILE, "w", newline="", encoding="utf-8") as f:
-        fieldnames = [k for k in rows[0].keys()]
+class FakeSpreadsheet:
+    def __init__(self, sheet1, other_tabs=None):
+        self.sheet1 = sheet1
+        self._tabs = dict(other_tabs or {})
+
+    def worksheet(self, title):
+        import gspread.exceptions
+        if title not in self._tabs:
+            raise gspread.exceptions.WorksheetNotFound(title)
+        return self._tabs[title]
+
+    def add_worksheet(self, title, rows, cols):
+        ws = FakeWorksheet(existing_rows=[[]])
+        self._tabs[title] = ws
+        return ws
+
+
+def _write_csv(path, rows):
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        fieldnames = list(rows[0].keys())
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for row in rows:
             writer.writerow(row)
 
 
-def test_first_run_no_history():
-    _write_results_csv(CURRENT_RESULTS)
+def test_process_screen_first_run_no_history():
+    _write_csv("test_up_results.csv", CURRENT_RESULTS)
     # [[]] matches what a real brand-new/cleared Google Sheet returns --
     # NOT [] -- this is the exact shape that caused the header-row bug.
     ws = FakeWorksheet(existing_rows=[[]])
-    with mock.patch.object(update_history, "get_worksheet", lambda: ws):
-        update_history.main()
+    new_rows = update_history.process_screen(
+        ws, "test_up_results.csv", "test_new_this_week.csv", "test"
+    )
 
-    with open(update_history.NEW_THIS_WEEK_FILE, encoding="utf-8") as f:
-        new_rows = list(csv.DictReader(f))
     assert {r["symbol"] for r in new_rows} == {"AAA", "BBB"}
     for r in new_rows:
         assert r["first_seen_date"]
+    with open("test_new_this_week.csv", encoding="utf-8") as f:
+        file_rows = list(csv.DictReader(f))
+    assert {r["symbol"] for r in file_rows} == {"AAA", "BBB"}
     # header + 2 data rows now in the fake sheet
     all_values = ws.get_all_values()
     assert len(all_values) == 3, all_values
     assert all_values[0] == update_history.FIELDNAMES, all_values[0]
+    for f in ("test_up_results.csv", "test_new_this_week.csv"):
+        os.remove(f)
 
 
-def test_only_genuinely_new_names_appended():
-    _write_results_csv(CURRENT_RESULTS)
+def test_process_screen_only_genuinely_new_names_appended():
+    _write_csv("test_up_results.csv", CURRENT_RESULTS)
     header = list(update_history.FIELDNAMES)
     aaa_row = ["AAA", "Alpha Corp", "Technology", "Software", "500000000", "50.0",
                "0000000001", "60.0", "0.5", "0.5", "0.5", "0.5", "True", "False", "", "2026-08-01"]
     ws = FakeWorksheet(existing_rows=[header, aaa_row])
-    with mock.patch.object(update_history, "get_worksheet", lambda: ws):
-        update_history.main()
+    new_rows = update_history.process_screen(
+        ws, "test_up_results.csv", "test_new_this_week.csv", "test"
+    )
 
-    with open(update_history.NEW_THIS_WEEK_FILE, encoding="utf-8") as f:
-        new_rows = list(csv.DictReader(f))
     assert {r["symbol"] for r in new_rows} == {"BBB"}
-    # sheet should now have header + AAA (pre-existing) + BBB (newly appended)
     all_values = ws.get_all_values()
     assert len(all_values) == 3
     symbols_in_sheet = {row[0] for row in all_values[1:]}
     assert symbols_in_sheet == {"AAA", "BBB"}
+    for f in ("test_up_results.csv", "test_new_this_week.csv"):
+        os.remove(f)
 
 
-def test_no_new_names():
-    _write_results_csv(CURRENT_RESULTS)
+def test_process_screen_no_new_names():
+    _write_csv("test_up_results.csv", CURRENT_RESULTS)
     header = list(update_history.FIELDNAMES)
     rows = [
         ["AAA"] + [""] * (len(header) - 1),
         ["BBB"] + [""] * (len(header) - 1),
     ]
     ws = FakeWorksheet(existing_rows=[header] + rows)
-    with mock.patch.object(update_history, "get_worksheet", lambda: ws):
+    new_rows = update_history.process_screen(
+        ws, "test_up_results.csv", "test_new_this_week.csv", "test"
+    )
+
+    assert new_rows == []
+    assert len(ws.get_all_values()) == 3
+    for f in ("test_up_results.csv", "test_new_this_week.csv"):
+        os.remove(f)
+
+
+def test_main_processes_both_screens_and_creates_distress_tab():
+    _write_csv("screener_results.csv", CURRENT_RESULTS)
+    _write_csv("distress_results.csv", DISTRESS_RESULTS)
+
+    up_ws = FakeWorksheet(existing_rows=[[]])
+    spreadsheet = FakeSpreadsheet(sheet1=up_ws)  # no "Distress" tab yet -- must be auto-created
+
+    with mock.patch.object(update_history, "get_spreadsheet", lambda: spreadsheet):
         update_history.main()
 
-    with open(update_history.NEW_THIS_WEEK_FILE, encoding="utf-8") as f:
-        new_rows = list(csv.DictReader(f))
-    assert new_rows == []
-    # nothing appended -- sheet unchanged
-    assert len(ws.get_all_values()) == 3
+    with open("new_this_week.csv", encoding="utf-8") as f:
+        up_new = list(csv.DictReader(f))
+    assert {r["symbol"] for r in up_new} == {"AAA", "BBB"}
+
+    with open("new_this_week_distress.csv", encoding="utf-8") as f:
+        distress_new = list(csv.DictReader(f))
+    assert {r["symbol"] for r in distress_new} == {"ZZZ"}
+
+    distress_ws = spreadsheet.worksheet(update_history.DISTRESS_WORKSHEET_TITLE)
+    distress_values = distress_ws.get_all_values()
+    assert len(distress_values) == 2, distress_values  # header + ZZZ
+    assert distress_values[0] == update_history.FIELDNAMES
+
+    for f in ("screener_results.csv", "distress_results.csv", "new_this_week.csv", "new_this_week_distress.csv"):
+        os.remove(f)
 
 
 class FakeResponse:
@@ -151,16 +207,10 @@ def test_with_retries_gives_up_after_max_attempts():
 def main():
     test_with_retries_recovers_from_transient_error()
     test_with_retries_gives_up_after_max_attempts()
-    with mock.patch.object(update_history, "RESULTS_FILE", "test_update_history_results.csv"), \
-         mock.patch.object(update_history, "NEW_THIS_WEEK_FILE", "test_update_history_new.csv"):
-        try:
-            test_first_run_no_history()
-            test_only_genuinely_new_names_appended()
-            test_no_new_names()
-        finally:
-            for f in (update_history.RESULTS_FILE, update_history.NEW_THIS_WEEK_FILE):
-                if os.path.exists(f):
-                    os.remove(f)
+    test_process_screen_first_run_no_history()
+    test_process_screen_only_genuinely_new_names_appended()
+    test_process_screen_no_new_names()
+    test_main_processes_both_screens_and_creates_distress_tab()
     print("ALL UPDATE_HISTORY MOCK ASSERTIONS PASSED")
 
 

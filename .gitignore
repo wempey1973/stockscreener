@@ -2,4 +2,6 @@
 __pycache__/
 *.pyc
 screener_results.csv
+distress_results.csv
 new_this_week.csv
+new_this_week_distress.csv
