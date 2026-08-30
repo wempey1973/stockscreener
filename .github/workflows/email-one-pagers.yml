@@ -1,0 +1,45 @@
+name: Email one-pagers
+
+# Fires the moment the weekly one-pager research routine (a Claude Code
+# cloud agent, not a GitHub Actions job) pushes finished .docx files to
+# this repo -- no fixed schedule needed on this side.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "one-pagers/**"
+
+jobs:
+  email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find latest one-pager folder
+        id: find
+        run: |
+          LATEST=$(ls -1 one-pagers | sort | tail -n 1)
+          if [ -z "$LATEST" ]; then
+            echo "No one-pager folders found, nothing to email"
+            exit 1
+          fi
+          FILES=$(find "one-pagers/$LATEST" -maxdepth 1 -type f | paste -sd ',' -)
+          if [ -z "$FILES" ]; then
+            echo "Latest one-pager folder is empty, nothing to email"
+            exit 1
+          fi
+          echo "date=$LATEST" >> "$GITHUB_OUTPUT"
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+
+      - name: Email one-pagers
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          subject: "Equity Raise One-Pagers - ${{ steps.find.outputs.date }}"
+          to: warrenempey@gmail.com
+          from: Stock Screener <${{ secrets.GMAIL_USERNAME }}>
+          body: "Attached are this week's equity-raise candidate one-pagers, researched and written from Sunday's screener run."
+          attachments: ${{ steps.find.outputs.files }}

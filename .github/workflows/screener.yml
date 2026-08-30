@@ -32,6 +32,8 @@ jobs:
     needs: check-time
     if: needs.check-time.outputs.proceed == 'true'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -64,6 +66,25 @@ jobs:
         if: steps.run_screener.outcome == 'success' && steps.update_history.outcome != 'success'
         run: |
           printf 'symbol,note\n,"History sheet update failed this run -- new-name diff unavailable this week. See the workflow logs. Full results are attached separately."\n' > new_this_week.csv
+
+      # Committed (not just uploaded as an artifact) so the weekly one-pager
+      # research routine -- a separate Claude Code cloud agent that can't
+      # access this repo's Actions artifacts or local files -- can read it
+      # via a plain git clone.
+      - name: Commit weekly candidate list for the research routine
+        if: steps.run_screener.outcome == 'success'
+        run: |
+          mkdir -p weekly-lists
+          cp new_this_week.csv weekly-lists/candidates.csv
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add weekly-lists/candidates.csv
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update weekly candidate list ($(date -u +%Y-%m-%d))"
+            git push origin HEAD:main
+          fi
 
       - name: Upload results
         if: steps.run_screener.outcome == 'success'
