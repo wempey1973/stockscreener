@@ -204,9 +204,54 @@ def test_with_retries_gives_up_after_max_attempts():
             assert "unavailable" in str(exc).lower() or "503" in str(exc)
 
 
+def test_with_retries_also_retries_non_apierror_gspread_exceptions():
+    # SpreadsheetNotFound (raised by client.open_by_key on a 404) does NOT
+    # inherit from APIError -- a narrower `except APIError` would silently
+    # skip retries for it. This is exactly the gap a real run hit (a
+    # corrupted GOOGLE_SHEET_ID secret produced a 404 that propagated on
+    # the first attempt with no retry at all).
+    import gspread.exceptions
+    calls = {"n": 0}
+
+    def flaky():
+        calls["n"] += 1
+        if calls["n"] < 3:
+            raise gspread.exceptions.SpreadsheetNotFound("not found (yet)")
+        return "ok"
+
+    with mock.patch.object(update_history.time, "sleep", lambda *_: None):
+        result = update_history.with_retries(flaky)
+    assert result == "ok"
+    assert calls["n"] == 3
+
+
+def test_with_retries_dont_retry_bypasses_immediately():
+    # WorksheetNotFound (checking whether a tab exists yet) is expected
+    # control flow, not a failure -- dont_retry should propagate it on the
+    # very first attempt, not burn through the full backoff schedule.
+    import gspread.exceptions
+    calls = {"n": 0}
+
+    def always_not_found():
+        calls["n"] += 1
+        raise gspread.exceptions.WorksheetNotFound("no such tab")
+
+    with mock.patch.object(update_history.time, "sleep", lambda *_: None):
+        try:
+            update_history.with_retries(
+                always_not_found, dont_retry=(gspread.exceptions.WorksheetNotFound,)
+            )
+            assert False, "expected WorksheetNotFound to propagate"
+        except gspread.exceptions.WorksheetNotFound:
+            pass
+    assert calls["n"] == 1, f"expected exactly 1 call (no retries), got {calls['n']}"
+
+
 def main():
     test_with_retries_recovers_from_transient_error()
     test_with_retries_gives_up_after_max_attempts()
+    test_with_retries_also_retries_non_apierror_gspread_exceptions()
+    test_with_retries_dont_retry_bypasses_immediately()
     test_process_screen_first_run_no_history()
     test_process_screen_only_genuinely_new_names_appended()
     test_process_screen_no_new_names()

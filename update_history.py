@@ -29,16 +29,29 @@ RETRY_ATTEMPTS = 4
 RETRY_BACKOFF_SECONDS = 3  # 3s, 6s, 12s between attempts
 
 
-def with_retries(fn, *args, **kwargs):
+def with_retries(fn, *args, dont_retry=(), **kwargs):
     """Retry a Sheets API call on transient errors (e.g. 503, 429) with
     exponential backoff. Google's API occasionally has brief outages/rate
     limits that clear up within seconds -- not worth failing the whole
-    weekly run over."""
+    weekly run over.
+
+    Catches GSpreadException broadly, not just APIError -- gspread raises
+    more specific subclasses (e.g. SpreadsheetNotFound) that do NOT inherit
+    from APIError, so a narrower catch silently skipped retries for those.
+    A genuinely wrong/missing sheet ID will still exhaust all attempts and
+    fail with a clear error either way; this just ensures every gspread
+    error gets the same retry treatment instead of some bypassing it.
+
+    `dont_retry`: exception types to re-raise immediately instead of
+    retrying -- for expected control-flow outcomes (e.g. WorksheetNotFound
+    when checking whether a tab exists yet), not real failures."""
     last_exc = None
     for attempt in range(1, RETRY_ATTEMPTS + 1):
         try:
             return fn(*args, **kwargs)
-        except gspread.exceptions.APIError as exc:
+        except dont_retry:
+            raise
+        except gspread.exceptions.GSpreadException as exc:
             last_exc = exc
             if attempt == RETRY_ATTEMPTS:
                 break
@@ -76,7 +89,10 @@ def get_up_worksheet(spreadsheet):
 
 def get_or_create_distress_worksheet(spreadsheet):
     try:
-        return with_retries(spreadsheet.worksheet, DISTRESS_WORKSHEET_TITLE)
+        return with_retries(
+            spreadsheet.worksheet, DISTRESS_WORKSHEET_TITLE,
+            dont_retry=(gspread.exceptions.WorksheetNotFound,),
+        )
     except gspread.exceptions.WorksheetNotFound:
         print(f"  '{DISTRESS_WORKSHEET_TITLE}' tab not found, creating it")
         return with_retries(spreadsheet.add_worksheet, title=DISTRESS_WORKSHEET_TITLE, rows=1000, cols=20)
