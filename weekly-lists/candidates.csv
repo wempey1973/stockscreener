@@ -1,2 +1,59 @@
 symbol,companyName,sector,industry,marketCap,oneYearReturnPct,cik,capital_need_score,cash_runway_component,leverage_component,capex_component,sector_component,active_unused_shelf,profitability_override,score_note,first_seen_date
 PGEN,Precigen Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,2488344967.0,54.1,0001356090,80.2,1.0,0.7,0.15,0.95,True,False,,2026-08-30
+LUNG,Pulmonx Corporation Common Stock,Health Care,Medical/Dental Instruments,102216880.0,39.18,0001127537,43.2,0.1,0.7,0.15,0.45,True,False,,2026-08-30
+RFL,Rafael Holdings Inc. Class B Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,133119990.0,74.15,0001713863,37.5,0.6,0.2,0.7,0.25,False,False,,2026-08-30
+NEO,NeoGenomics Inc. Common Stock,Health Care,Precision Instruments,2318981692.0,105.58,0001077183,36.3,0.1,1.0,0.15,0.55,False,False,,2026-08-30
+NEOG,Neogen Corporation Common Stock,Health Care,Biotechnology: In Vitro & In Vivo Diagnostic Substances,2543116018.0,102.78,0000711377,34.2,0.1,1.0,0.15,0.45,False,False,,2026-08-30
+DWSN,Dawson Geophysical Company Common Stock,Energy,Oil & Gas Production,103725764.0,104.91,0000799165,32.2,0.6,0.15,0.15,0.45,False,False,,2026-08-30
+NCSM,NCS Multistage Holdings Inc. Common Stock,Energy,Oilfield Services/Equipment,135530368.0,35.52,0001692427,32.2,0.1,0.15,0.15,0.45,True,False,,2026-08-30
+BKD,Brookdale Senior Living Inc. Common Stock,Health Care,Hospital/Nursing Management,2798938193.0,52.21,0001332349,30.2,0.1,1.0,0.15,0.25,False,False,,2026-08-30
+DLTH,Duluth Holdings Inc. Class B Common Stock,Consumer Discretionary,Clothing/Shoe/Accessory Stores,139847621.0,62.11,0001649744,30.2,0.1,1.0,0.15,0.25,False,False,,2026-08-30
+TLYS,Tilly's Inc. Common Stock,Consumer Discretionary,Clothing/Shoe/Accessory Stores,120734143.0,101.02,0001524025,30.2,0.1,1.0,0.15,0.25,False,False,,2026-08-30
+UFI,Unifi Inc. New Common Stock,Consumer Discretionary,Textiles,138672724.0,68.78,0000100726,30.2,0.1,1.0,0.15,0.25,False,False,,2026-08-30
+BWEN,Broadwind Inc. Common Stock,Telecommunications,Metal Fabrications,103382720.0,108.1,0001120370,28.2,0.1,0.15,0.15,0.25,True,False,,2026-08-30
+INTT,inTest Corporation Common Stock,Industrials,Electrical Products,141724935.0,57.86,0001036262,28.2,0.1,0.15,0.15,0.25,True,False,,2026-08-30
+ZYME,Zymeworks Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,2006017743.0,90.88,0001937653,28.2,0.1,0.2,0.15,0.95,False,False,,2026-08-30
+ARQT,Arcutis Biotherapeutics Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,2988954833.0,53.22,0001787306,27.2,0.1,0.15,0.15,0.95,False,False,,2026-08-30
+DCO,Ducommun Incorporated Common Stock,Industrials,Military/Government/Technical,2662091038.0,93.27,0000030305,25.8,0.35,0.4,0.15,0.25,False,False,,2026-08-30
+BTX,BlackRock Technology and Private Equity Term Trust Common Shares of Beneficial Interest,,,2112733719.0,38.55,0001836057,24.5,0.3,0.3,0.3,0.25,False,False,,2026-08-30
+PBI,Pitney Bowes Inc. Common Stock,Miscellaneous,Office Equipment/Supplies/Services,2359322549.0,46.33,0000078814,24.2,0.1,0.7,0.15,0.25,False,True,,2026-08-30
+RFIL,RF Industries Ltd. Common Stock,Technology,Electrical Products,112853156.0,48.15,0000740664,24.2,0.1,0.7,0.15,0.25,False,False,,2026-08-30
+CPIX,Cumberland Pharmaceuticals Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,126757085.0,212.6,0001087294,22.2,0.1,0.15,0.15,0.7,False,False,,2026-08-30
+LPG,Dorian LPG Ltd. Common Stock,Consumer Discretionary,Marine Transportation,2129721860.0,70.93,0001596993,21.5,0.1,0.15,0.7,0.25,False,True,,2026-08-30
+TALO,Talos Energy Inc. Common Stock,Energy,Oil & Gas Production,2783314352.0,68.72,0001724965,21.5,0.1,0.15,0.3,0.55,False,False,,2026-08-30
+CDNA,CareDx Inc. Common Stock,Health Care,Medical Specialities,2575846963.0,264.49,0001217234,19.2,0.1,0.15,0.15,0.55,False,False,,2026-08-30
+ANDE,Andersons Inc. (The) Common Stock,Industrials,Farming/Seeds/Milling,2193462799.0,60.14,0000821026,18.2,0.1,0.4,0.15,0.25,False,True,,2026-08-30
+BFLY,Butterfly Network Inc. Class A Common Stock,Health Care,Medical Electronics,2244784093.0,423.6,0001804176,18.2,0.1,0.2,0.15,0.45,False,False,,2026-08-30
+DXPE,DXP Enterprises Inc. Common Stock,Industrials,Industrial Machinery/Components,2884948156.0,48.88,0001020710,18.2,0.1,0.4,0.15,0.25,False,False,,2026-08-30
+EZPW,EZCORP Inc. Class A Non Voting Common Stock,Consumer Discretionary,Other Specialty Stores,2027631441.0,97.96,0000876523,18.2,0.1,0.4,0.15,0.25,False,False,,2026-08-30
+GRC,Gorman-Rupp Company (The) Common Stock,Industrials,Fluid Controls,2012988721.0,80.34,0000042682,18.2,0.1,0.4,0.15,0.25,False,True,,2026-08-30
+HLIO,Helios Technologies Inc. Common Stock,Industrials,Metal Fabrications,2408028167.0,35.6,0001024795,18.2,0.1,0.4,0.15,0.25,False,True,,2026-08-30
+HOFT,Hooker Furnishings Corporation Common Stock,Consumer Discretionary,Home Furnishings,143615861.0,40.44,0001077688,18.2,0.1,0.4,0.15,0.25,False,True,,2026-08-30
+KALU,Kaiser Aluminum Corporation Common Stock,Industrials,Metal Fabrications,2556671007.0,105.52,0000811596,18.2,0.1,0.4,0.15,0.25,False,True,,2026-08-30
+MAN,ManpowerGroup Common Stock,Consumer Discretionary,Professional Services,2901482512.0,54.44,0000871763,18.2,0.1,0.4,0.15,0.25,False,True,,2026-08-30
+SIF,SIFCO Industries Inc. Common Stock,Industrials,Aerospace,138904183.0,213.26,0000090168,18.2,0.1,0.4,0.15,0.25,False,False,,2026-08-30
+WERN,Werner Enterprises Inc. Common Stock,Industrials,Trucking Freight/Courier Services,2304322334.0,35.49,0000793074,18.2,0.1,0.4,0.15,0.25,False,True,,2026-08-30
+WLYB,John Wiley & Sons Inc. Common Stock,Consumer Discretionary,Books,2750371306.0,40.9,0000107140,18.2,0.1,0.4,0.15,0.25,False,True,,2026-08-30
+UFPT,UFP Technologies Inc. Common Stock,Health Care,Medical/Dental Instruments,2324124290.0,42.77,0000914156,17.2,0.1,0.15,0.15,0.45,False,False,,2026-08-30
+NRDY,Nerdy Inc. Class A Common Stock,Real Estate,Other Consumer Services,131827608.0,658.82,0001819404,15.2,0.1,0.2,0.15,0.3,False,False,,2026-08-30
+CLOV,Clover Health Investments Corp. Class A Common Stock,Health Care,Medical Specialities,2246790992.0,61.45,0001801170,14.3,0.1,0.2,0.15,0.25,False,False,,2026-08-30
+DIBS,1stdibs.com Inc. Common Stock,Consumer Discretionary,Catalog/Specialty Distribution,149924207.0,62.77,0001600641,14.3,0.1,0.2,0.15,0.25,False,False,,2026-08-30
+HURC,Hurco Companies Inc. Common Stock,Industrials,Industrial Machinery/Components,148502063.0,37.47,0000315374,14.3,0.1,0.2,0.15,0.25,False,False,,2026-08-30
+ADEA,Adeia Inc. Common Stock,Telecommunications,Cable & Other Pay Television Services,2836405458.0,72.82,0001803696,14.2,0.1,0.15,0.15,0.3,False,True,,2026-08-30
+FLYW,Flywire Corporation Voting Common Stock,Consumer Discretionary,Business Services,2286135594.0,42.89,0001580560,14.2,0.1,0.15,0.15,0.3,False,False,,2026-08-30
+NTCT,NetScout Systems Inc. Common Stock,Technology,EDP Services,2839947607.0,56.93,0001078075,14.2,0.1,0.15,0.15,0.3,False,False,,2026-08-30
+RAMP,LiveRamp Holdings Inc. Common Stock,Technology,EDP Services,2294402621.0,35.17,0000733269,14.2,0.1,0.15,0.15,0.3,False,False,,2026-08-30
+TDC,Teradata Corporation Common Stock,Technology,Computer Software: Prepackaged Software,2675610000.0,37.13,0000816761,14.2,0.1,0.15,0.15,0.3,False,False,,2026-08-30
+AMR,Alpha Metallurgical Resources Inc. Common Stock,Energy,Coal Mining,2868380350.0,51.64,0001704715,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
+BHE,Benchmark Electronics Inc. Common Stock,Technology,Electrical Products,2561450422.0,78.04,0000863436,13.2,0.1,0.15,0.15,0.25,False,True,,2026-08-30
+CALY,Callaway Golf Company Common Stock,Consumer Discretionary,Recreational Games/Products/Toys,2800830074.0,64.12,0000837465,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
+COHU,Cohu Inc. Common Stock,Industrials,Electrical Products,2272244784.0,141.21,0000021535,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
+DGII,Digi International Inc. Common Stock,Telecommunications,Computer Communications Equipment,2875329280.0,118.23,0000854775,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
+FIGS,FIGS Inc. Class A Common Stock,Consumer Discretionary,Apparel,2561882532.0,118.72,0001846576,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
+KN,Knowles Corporation Common Stock,Consumer Staples,Consumer Electronics/Appliances,2923595459.0,60.33,0001587523,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
+MD,Pediatrix Medical Group Inc. Common Stock,Health Care,Hospital/Nursing Management,2162149541.0,54.62,0000893949,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
+PENG,Penguin Solutions Inc. Common Stock,Technology,Semiconductors,2537026027.0,105.18,0001616533,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
+ROG,Rogers Corporation Common Stock,Industrials,Major Chemicals,2242833409.0,59.98,0000084748,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
+SPB,Spectrum Brands Holdings Inc. Common Stock,Miscellaneous,Industrial Machinery/Components,2039249453.0,59.67,0000109177,13.2,0.1,0.15,0.15,0.25,False,True,,2026-08-30
+TILE,Interface Inc. Common Stock,Consumer Discretionary,Home Furnishings,2229941747.0,44.81,0000715787,13.2,0.1,0.15,0.15,0.25,False,True,,2026-08-30
+VECO,Veeco Instruments Inc. Common Stock,Technology,Industrial Machinery/Components,2707737404.0,80.67,0000103145,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
