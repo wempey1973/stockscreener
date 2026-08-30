@@ -69,7 +69,7 @@ jobs:
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
           subject: "Stock Screener - New Names - ${{ github.event.repository.name }}"
-          to: newmanabe69@gmail.com
+          to: warrenempey@gmail.com
           from: Stock Screener <${{ secrets.GMAIL_USERNAME }}>
           body: "Attached are this week's newly qualifying companies (names never seen on a previous run). Full run results are also attached for reference."
           attachments: new_this_week.csv,screener_results.csv
