@@ -43,17 +43,30 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run screener
+        id: run_screener
         env:
           SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
         run: python screener.py
 
+      # continue-on-error so a transient Google API hiccup (e.g. a 503)
+      # doesn't cost the whole week's report -- update_history.py already
+      # retries transient errors itself; this is the last-resort fallback.
+      # The step still shows as failed in the Actions UI so it's visible.
       - name: Update history sheet and compute new names
+        id: update_history
+        continue-on-error: true
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
         run: python update_history.py
 
+      - name: Fall back if history update failed
+        if: steps.run_screener.outcome == 'success' && steps.update_history.outcome != 'success'
+        run: |
+          printf 'symbol,note\n,"History sheet update failed this run -- new-name diff unavailable this week. See the workflow logs. Full results are attached separately."\n' > new_this_week.csv
+
       - name: Upload results
+        if: steps.run_screener.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: screener-results
@@ -61,14 +74,15 @@ jobs:
             screener_results.csv
             new_this_week.csv
 
-      - name: Email new names
+      - name: Email results
+        if: steps.run_screener.outcome == 'success'
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
           server_port: 465
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
-          subject: "Stock Screener - New Names - ${{ github.event.repository.name }}"
+          subject: "Stock Screener - ${{ steps.update_history.outcome == 'success' && 'New Names' || 'Results (history update failed)' }} - ${{ github.event.repository.name }}"
           to: warrenempey@gmail.com
           from: Stock Screener <${{ secrets.GMAIL_USERNAME }}>
           body: "Attached are this week's newly qualifying companies (names never seen on a previous run). Full run results are also attached for reference."

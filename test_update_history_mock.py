@@ -104,7 +104,53 @@ def test_no_new_names():
     assert len(ws.get_all_values()) == 3
 
 
+class FakeResponse:
+    def __init__(self, code, message):
+        self._code, self._message = code, message
+
+    def json(self):
+        return {"error": {"code": self._code, "message": self._message, "status": "UNAVAILABLE"}}
+
+    @property
+    def text(self):
+        return self._message
+
+
+def _make_api_error(code=503, message="The service is currently unavailable."):
+    import gspread.exceptions
+    return gspread.exceptions.APIError(FakeResponse(code, message))
+
+
+def test_with_retries_recovers_from_transient_error():
+    calls = {"n": 0}
+
+    def flaky():
+        calls["n"] += 1
+        if calls["n"] < 3:
+            raise _make_api_error()
+        return "ok"
+
+    with mock.patch.object(update_history.time, "sleep", lambda *_: None):
+        result = update_history.with_retries(flaky)
+    assert result == "ok"
+    assert calls["n"] == 3
+
+
+def test_with_retries_gives_up_after_max_attempts():
+    def always_fails():
+        raise _make_api_error()
+
+    with mock.patch.object(update_history.time, "sleep", lambda *_: None):
+        try:
+            update_history.with_retries(always_fails)
+            assert False, "expected APIError to propagate"
+        except Exception as exc:
+            assert "unavailable" in str(exc).lower() or "503" in str(exc)
+
+
 def main():
+    test_with_retries_recovers_from_transient_error()
+    test_with_retries_gives_up_after_max_attempts()
     with mock.patch.object(update_history, "RESULTS_FILE", "test_update_history_results.csv"), \
          mock.patch.object(update_history, "NEW_THIS_WEEK_FILE", "test_update_history_new.csv"):
         try:

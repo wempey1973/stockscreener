@@ -13,6 +13,7 @@ import csv
 import json
 import os
 import sys
+import time
 from datetime import date
 
 import gspread
@@ -20,6 +21,28 @@ from google.oauth2.service_account import Credentials
 
 GOOGLE_SERVICE_ACCOUNT_JSON = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON")
 GOOGLE_SHEET_ID = os.environ.get("GOOGLE_SHEET_ID")
+
+RETRY_ATTEMPTS = 4
+RETRY_BACKOFF_SECONDS = 3  # 3s, 6s, 12s between attempts
+
+
+def with_retries(fn, *args, **kwargs):
+    """Retry a Sheets API call on transient errors (e.g. 503, 429) with
+    exponential backoff. Google's API occasionally has brief outages/rate
+    limits that clear up within seconds -- not worth failing the whole
+    weekly run over."""
+    last_exc = None
+    for attempt in range(1, RETRY_ATTEMPTS + 1):
+        try:
+            return fn(*args, **kwargs)
+        except gspread.exceptions.APIError as exc:
+            last_exc = exc
+            if attempt == RETRY_ATTEMPTS:
+                break
+            delay = RETRY_BACKOFF_SECONDS * (2 ** (attempt - 1))
+            print(f"  Sheets API error on attempt {attempt}/{RETRY_ATTEMPTS} ({exc}); retrying in {delay}s...")
+            time.sleep(delay)
+    raise last_exc
 
 SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -42,7 +65,7 @@ def get_worksheet():
     creds_info = json.loads(GOOGLE_SERVICE_ACCOUNT_JSON)
     creds = Credentials.from_service_account_info(creds_info, scopes=SCOPES)
     client = gspread.authorize(creds)
-    sheet = client.open_by_key(GOOGLE_SHEET_ID)
+    sheet = with_retries(client.open_by_key, GOOGLE_SHEET_ID)
     return sheet.sheet1
 
 
@@ -53,7 +76,7 @@ def _is_effectively_empty(values):
 
 
 def load_known_symbols(ws):
-    values = ws.get_all_values()
+    values = with_retries(ws.get_all_values)
     if _is_effectively_empty(values):
         return set()
     header = values[0]
@@ -94,9 +117,9 @@ def main():
         print("Nothing new to append.")
     else:
         rows_to_append = [[row.get(field, "") for field in FIELDNAMES] for row in new_rows]
-        if _is_effectively_empty(ws.get_all_values()):
+        if _is_effectively_empty(with_retries(ws.get_all_values)):
             rows_to_append = [FIELDNAMES] + rows_to_append
-        ws.append_rows(rows_to_append, value_input_option="RAW")
+        with_retries(ws.append_rows, rows_to_append, value_input_option="RAW")
         print(f"Appended {len(new_rows)} new rows to the history sheet")
 
     with open(NEW_THIS_WEEK_FILE, "w", newline="", encoding="utf-8") as f:
