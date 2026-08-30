@@ -1,0 +1,75 @@
+name: Run stock screener
+
+on:
+  schedule:
+    # GitHub Actions cron is UTC-only, so 9:00 AM US/Eastern needs two
+    # triggers to stay correct across DST -- the check-time job below picks
+    # whichever one actually lands at 9 AM Eastern and skips the other.
+    - cron: "0 13 * * 0"  # ~9:00 AM Eastern during EDT (UTC-4)
+    - cron: "0 14 * * 0"  # ~9:00 AM Eastern during EST (UTC-5)
+  workflow_dispatch: {}  # allows manual trigger from the Actions tab
+
+jobs:
+  check-time:
+    runs-on: ubuntu-latest
+    outputs:
+      proceed: ${{ steps.check.outputs.proceed }}
+    steps:
+      - id: check
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          HOUR=$(TZ="America/New_York" date +%H)
+          if [ "$HOUR" = "09" ]; then
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  screen:
+    needs: check-time
+    if: needs.check-time.outputs.proceed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run screener
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+        run: python screener.py
+
+      - name: Update history sheet and compute new names
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+        run: python update_history.py
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: screener-results
+          path: |
+            screener_results.csv
+            new_this_week.csv
+
+      - name: Email new names
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          subject: "Stock Screener - New Names - ${{ github.event.repository.name }}"
+          to: newmanabe69@gmail.com
+          from: Stock Screener <${{ secrets.GMAIL_USERNAME }}>
+          body: "Attached are this week's newly qualifying companies (names never seen on a previous run). Full run results are also attached for reference."
+          attachments: new_this_week.csv,screener_results.csv
