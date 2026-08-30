@@ -1,0 +1,34 @@
+symbol,companyName,sector,industry,marketCap,oneYearReturnPct,cik,capital_need_score,cash_runway_component,leverage_component,capex_component,sector_component,active_unused_shelf,profitability_override,score_note,first_seen_date
+TBI,TrueBlue Inc. Common Stock,Consumer Discretionary,Professional Services,325754481.0,79.23,0000768899,67.8,0.85,1.0,0.15,0.25,True,False,,2026-08-30
+SMC,Summit Midstream Corporation Common Stock,Utilities,Natural Gas Distribution,692099537.0,48.05,0002024218,53.5,0.1,1.0,0.7,0.25,True,False,,2026-08-30
+TKNO,Alpha Teknova Inc. Common Stock,Health Care,Biotechnology: In Vitro & In Vivo Diagnostic Substances,382260312.0,64.81,0001850902,48.2,0.1,0.7,0.15,0.7,True,False,,2026-08-30
+AVIR,Atea Pharmaceuticals Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,429897187.0,59.52,0001593899,45.5,0.1,0.2,0.3,0.95,True,False,,2026-08-30
+GLSI,Greenwich LifeSciences Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,230007519.0,36.5,0001799788,45.5,0.1,0.2,0.3,0.95,True,False,,2026-08-30
+FF,FutureFuel Corp.  Common shares,Industrials,Major Chemicals,234230118.0,44.56,0001337298,45.0,1.0,0.2,0.4,0.25,False,False,,2026-08-30
+CBLL,CeriBell Inc. Common Stock,Health Care,Biotechnology: Electromedical & Electrotherapeutic Apparatus,910712337.0,100.59,0001861107,33.2,0.1,0.2,0.15,0.45,True,False,,2026-08-30
+MASS,908 Devices Inc. Common Stock,Industrials,Industrial Machinery/Components,443510655.0,71.68,0001555279,33.2,0.1,0.2,0.15,0.45,True,False,,2026-08-30
+RDIB,Reading International Inc Class B Common Stock,Consumer Discretionary,Movies/Entertainment,419118225.0,45.32,0000716634,32.5,0.1,1.0,0.3,0.25,False,False,,2026-08-30
+PNRG,PrimeEnergy Resources Corporation Common Stock,Energy,Oil & Gas Production,331871220.0,38.63,0000056868,32.0,0.1,0.15,1.0,0.55,False,False,,2026-08-30
+TNDM,Tandem Diabetes Care Inc. Common Stock,Health Care,Medical/Dental Instruments,1491071691.0,71.3,0001438133,32.0,0.1,0.7,0.4,0.45,False,False,,2026-08-30
+SSP,E.W. Scripps Company (The) Class A Common Stock,Industrials,Broadcasting,302100911.0,45.01,0000832428,30.2,0.1,1.0,0.15,0.25,False,False,,2026-08-30
+IA,Innovative Solutions and Support Inc. Common Stock,Technology,EDP Services,369617922.0,59.46,0000836690,28.2,0.1,0.15,0.15,0.25,True,False,,2026-08-30
+SRTA,Strata Critical Medical Inc. Class A Common Stock,Health Care,Medical/Nursing Services,528146832.0,36.61,0001779128,28.2,0.6,0.15,0.15,0.25,False,False,,2026-08-30
+VISN,Vistance Networks Inc. Common Stock,Technology,Radio And Television Broadcasting And Communications Equipment,1397596057.0,35.81,0001517228,28.2,0.1,0.15,0.15,0.25,True,False,,2026-08-30
+BLMN,Bloomin' Brands Inc. Common Stock,Consumer Discretionary,Restaurants,905869302.0,43.95,0001546417,25.0,0.1,1.0,0.15,0.25,False,True,,2026-08-30
+KRO,Kronos Worldwide Inc Common Stock,Basic Materials,Major Chemicals,1012858141.0,43.01,0001257640,25.0,0.1,1.0,0.15,0.25,False,True,,2026-08-30
+RES,RPC Inc. Common Stock,Energy,Oilfield Services/Equipment,1418604877.0,37.85,0000742278,25.0,0.1,0.15,0.4,0.45,True,True,,2026-08-30
+USDE,StablecoinX Inc. Class A Common Stock,Finance,Finance: Consumer Services,183784992.0,82.7,0002080215,24.5,0.3,0.3,0.3,0.25,False,False,,2026-08-30
+MTW,Manitowoc Company Inc. (The) Common Stock,Industrials,Construction/Ag Equipment/Trucks,706453973.0,97.88,0000061986,24.2,0.1,0.7,0.15,0.25,False,False,,2026-08-30
+PMTS,CPI Card Group Inc. Common Stock,Consumer Discretionary,Publishing,332429187.0,85.04,0001641614,24.2,0.1,0.7,0.15,0.25,False,False,,2026-08-30
+IBTA,Ibotta Inc. Class A Common Stock,Consumer Discretionary,Advertising,858665895.0,37.56,0001538379,19.0,0.1,0.2,0.4,0.3,False,False,,2026-08-30
+DCTH,Delcath Systems Inc. Common Stock,Health Care,Medical/Dental Instruments,566978310.0,48.28,0000872912,18.2,0.1,0.2,0.15,0.45,False,False,,2026-08-30
+LIND,Lindblad Expeditions Holdings Inc. Common Stock,Consumer Discretionary,Transportation Services,1941686598.0,102.95,0001512499,18.2,0.1,0.4,0.15,0.25,False,False,,2026-08-30
+SXC,SunCoke Energy Inc. Common Stock,Industrials,Steel/Iron Ore,862328476.0,39.92,0001514705,18.2,0.1,0.4,0.15,0.25,False,True,,2026-08-30
+PAYS,Paysign Inc. Common Stock,Technology,EDP Services,727797191.0,148.84,0001496443,18.0,0.1,0.15,0.4,0.3,False,False,,2026-08-30
+PUBM,PubMatic Inc. Class A Common Stock,Technology,Computer Software: Programming Data Processing,766152026.0,94.0,0001422930,18.0,0.1,0.15,0.4,0.3,False,False,,2026-08-30
+AMPX,Amprius Technologies Inc. Common Stock,Miscellaneous,Industrial Machinery/Components,1444737312.0,39.49,0001899287,14.3,0.1,0.2,0.15,0.25,False,False,,2026-08-30
+HNST,The Honest Company Inc. Common Stock,Consumer Discretionary,Catalog/Specialty Distribution,608302429.0,43.18,0001530979,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
+KINS,Kingstone Companies Inc. Common Stock,Finance,Property-Casualty Insurers,289522660.0,50.51,0000033992,13.2,0.1,0.15,0.15,0.25,False,True,,2026-08-30
+MLR,Miller Industries Inc. Common Stock,Consumer Discretionary,Construction/Ag Equipment/Trucks,644009398.0,37.41,0000924822,13.2,0.1,0.15,0.15,0.25,False,True,,2026-08-30
+RCMT,RCM Technologies Inc. Common Stock,Consumer Discretionary,Professional Services,297514157.0,54.22,0000700841,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
+SENEA,Seneca Foods Corp. Class A Common Stock,Consumer Staples,Packaged Foods,1353008127.0,76.54,0000088948,13.2,0.1,0.15,0.15,0.25,False,False,,2026-08-30
