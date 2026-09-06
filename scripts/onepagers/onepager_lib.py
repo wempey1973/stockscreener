@@ -98,6 +98,19 @@ def shaded_header_row(table, header_texts, fill="1F3864"):
         tcPr.append(shd)
 
 
+def fix_zoom(doc):
+    """python-docx's bundled default.docx template writes <w:zoom w:val="bestFit"/>
+    without the w:percent attribute that the OOXML schema requires, so every
+    document Document() produces (fresh one-pagers and 00_summary.docx alike)
+    fails strict schema validation on word/settings.xml even though Word and
+    LibreOffice both open it fine. Call this right before doc.save() to add
+    the missing attribute."""
+    settings = doc.settings.element
+    zoom = settings.find(qn("w:zoom"))
+    if zoom is not None and zoom.get(qn("w:percent")) is None:
+        zoom.set(qn("w:percent"), "100")
+
+
 def data_row(table, values, size=8.5):
     row = table.add_row()
     for cell, text in zip(row.cells, values):
@@ -165,5 +178,6 @@ def create_one_pager(data, output_path):
     if data.get("summary_note"):
         body(doc, f"Note: {data['summary_note']}", italic=True, size=9, color=GRAY)
 
+    fix_zoom(doc)
     doc.save(output_path)
     return output_path

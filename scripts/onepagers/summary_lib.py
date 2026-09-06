@@ -10,7 +10,7 @@ import os
 from docx import Document
 from docx.shared import Pt
 
-from onepager_lib import heading1, heading2, body, add_borders, shaded_header_row, data_row
+from onepager_lib import heading1, heading2, body, add_borders, shaded_header_row, data_row, fix_zoom
 
 KEEP_HEADERS = ["Screen", "Ticker", "Market Cap", "Raise Size", "% of Mkt Cap", "Urgency"]
 DISPOSITION_HEADERS = ["Screen", "Ticker", "Score", "Disposition", "Reason"]
@@ -57,5 +57,6 @@ def append_disposition_section(doc, batch_label, rows):
 
 
 def save(doc, path):
+    fix_zoom(doc)
     doc.save(path)
     return path
