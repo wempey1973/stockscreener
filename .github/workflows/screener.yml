@@ -2,11 +2,14 @@ name: Run stock screener
 
 on:
   schedule:
-    # GitHub Actions cron is UTC-only, so 9:00 AM US/Eastern needs two
+    # GitHub Actions cron is UTC-only, so 5:00 AM US/Eastern needs two
     # triggers to stay correct across DST -- the check-time job below picks
-    # whichever one actually lands at 9 AM Eastern and skips the other.
-    - cron: "0 13 * * 0"  # ~9:00 AM Eastern during EDT (UTC-4)
-    - cron: "0 14 * * 0"  # ~9:00 AM Eastern during EST (UTC-5)
+    # whichever one actually lands at 5 AM Eastern and skips the other.
+    # Saturday (not Sunday) so this finishes with a buffer before the
+    # Weekly equity-raise one-pager research routine, which reads
+    # weekly-lists/candidates*.csv and fires Saturday 8:00 AM ET.
+    - cron: "0 9 * * 6"   # ~5:00 AM Eastern during EDT (UTC-4)
+    - cron: "0 10 * * 6"  # ~5:00 AM Eastern during EST (UTC-5)
   workflow_dispatch: {}  # allows manual trigger from the Actions tab
 
 jobs:
@@ -22,7 +25,7 @@ jobs:
             exit 0
           fi
           HOUR=$(TZ="America/New_York" date +%H)
-          if [ "$HOUR" = "09" ]; then
+          if [ "$HOUR" = "05" ]; then
             echo "proceed=true" >> "$GITHUB_OUTPUT"
           else
             echo "proceed=false" >> "$GITHUB_OUTPUT"
