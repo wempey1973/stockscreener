@@ -2,38 +2,15 @@ name: Run stock screener
 
 on:
   schedule:
-    # GitHub Actions cron is UTC-only, so 5:00 AM US/Eastern needs two
-    # triggers to stay correct across DST -- the check-time job below picks
-    # whichever one actually lands at 5 AM Eastern and skips the other.
-    # Saturday (not Sunday) so this finishes with a buffer before the
-    # Weekly equity-raise one-pager research routine, which reads
-    # weekly-lists/candidates*.csv and fires Saturday 8:00 AM ET.
-    - cron: "0 9 * * 6"   # ~5:00 AM Eastern during EDT (UTC-4)
-    - cron: "0 10 * * 6"  # ~5:00 AM Eastern during EST (UTC-5)
+    # Single trigger, ~5:00 AM Eastern (9:00 UTC = 5 AM EDT / 4 AM EST). The
+    # old two-trigger + "is it 5 AM Eastern" gate silently skipped every run
+    # once GitHub started delivering scheduled runs hours late. Saturday so
+    # this finishes before the one-pager research routine (Sat 8:00 AM ET).
+    - cron: "0 9 * * 6"
   workflow_dispatch: {}  # allows manual trigger from the Actions tab
 
 jobs:
-  check-time:
-    runs-on: ubuntu-latest
-    outputs:
-      proceed: ${{ steps.check.outputs.proceed }}
-    steps:
-      - id: check
-        run: |
-          if [ "${{ github.event_name }}" != "schedule" ]; then
-            echo "proceed=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          HOUR=$(TZ="America/New_York" date +%H)
-          if [ "$HOUR" = "05" ]; then
-            echo "proceed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "proceed=false" >> "$GITHUB_OUTPUT"
-          fi
-
   screen:
-    needs: check-time
-    if: needs.check-time.outputs.proceed == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
