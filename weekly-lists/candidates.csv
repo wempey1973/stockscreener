@@ -1,2 +1,6 @@
 symbol,companyName,sector,industry,marketCap,oneYearReturnPct,cik,capital_need_score,cash_runway_component,leverage_component,capex_component,sector_component,active_unused_shelf,profitability_override,score_note,first_seen_date
-EBF,Ennis Inc. Common Stock,Consumer Discretionary,Office Equipment/Supplies/Services,575979632.0,36.45,0000033002,13.2,0.1,0.15,0.15,0.25,False,True,,2026-10-10
+KGEI,Kolibri Global Energy Inc. Common stock,Energy,Oil & Gas Production,237998897.0,43.42,0001477081,59.0,1.0,0.15,1.0,0.55,False,False,,2026-10-17
+SG,Sweetgreen Inc. Class A Common Stock,Consumer Discretionary,Restaurants,1261837939.0,37.35,0001477815,32.5,0.1,0.7,0.7,0.25,False,False,,2026-10-17
+SGC,Superior Group of Companies Inc. Common Stock,Consumer Discretionary,Apparel,213984597.0,41.18,0000095574,25.0,0.1,0.4,0.15,0.25,True,True,,2026-10-17
+SCL,Stepan Company Common Stock,Consumer Discretionary,Package Goods/Cosmetics,1406462250.0,40.16,0000094049,18.2,0.1,0.4,0.15,0.25,False,True,,2026-10-17
+FORR,Forrester Research Inc. Common Stock,Industrials,Diversified Commercial Services,227230465.0,36.31,0001023313,13.2,0.1,0.15,0.15,0.25,False,False,,2026-10-17
