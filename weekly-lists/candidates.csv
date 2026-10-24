@@ -1,6 +1,5 @@
 symbol,companyName,sector,industry,marketCap,oneYearReturnPct,cik,capital_need_score,cash_runway_component,leverage_component,capex_component,sector_component,active_unused_shelf,profitability_override,score_note,first_seen_date
-KGEI,Kolibri Global Energy Inc. Common stock,Energy,Oil & Gas Production,237998897.0,43.42,0001477081,59.0,1.0,0.15,1.0,0.55,False,False,,2026-10-17
-SG,Sweetgreen Inc. Class A Common Stock,Consumer Discretionary,Restaurants,1261837939.0,37.35,0001477815,32.5,0.1,0.7,0.7,0.25,False,False,,2026-10-17
-SGC,Superior Group of Companies Inc. Common Stock,Consumer Discretionary,Apparel,213984597.0,41.18,0000095574,25.0,0.1,0.4,0.15,0.25,True,True,,2026-10-17
-SCL,Stepan Company Common Stock,Consumer Discretionary,Package Goods/Cosmetics,1406462250.0,40.16,0000094049,18.2,0.1,0.4,0.15,0.25,False,True,,2026-10-17
-FORR,Forrester Research Inc. Common Stock,Industrials,Diversified Commercial Services,227230465.0,36.31,0001023313,13.2,0.1,0.15,0.15,0.25,False,False,,2026-10-17
+KIDS,OrthoPediatrics Corp. Common Stock,Health Care,Medical/Dental Instruments,645172861.0,43.86,0001425450,43.2,0.1,0.7,0.15,0.45,True,False,,2026-10-24
+OSUR,OraSure Technologies Inc. Common Stock,Health Care,Medical/Dental Instruments,262080783.0,39.53,0001116463,33.2,0.1,0.2,0.15,0.45,True,False,,2026-10-24
+OCC,Optical Cable Corporation Common Stock,Industrials,Telecommunications Equipment,106811650.0,49.17,0001000230,18.2,0.1,0.4,0.15,0.25,False,False,,2026-10-24
+SIBN,SI-BONE Inc. Common Stock,Health Care,Medical/Dental Instruments,966288477.0,38.67,0001459839,18.2,0.1,0.2,0.15,0.45,False,False,,2026-10-24

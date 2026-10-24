@@ -1,48 +1,38 @@
 symbol,companyName,sector,industry,marketCap,oneYearReturnPct,cik,capital_need_score,cash_runway_component,leverage_component,capex_component,sector_component,active_unused_shelf,profitability_override,score_note,first_seen_date
-GALT,Galectin Therapeutics Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,374979368.0,-27.45,0001133416,70.0,0.85,0.3,0.3,0.95,True,False,,2026-10-17
-HURA,TuHURA Biosciences Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,116619709.0,-26.67,0001498382,67.5,1.0,0.7,0.3,0.95,False,False,,2026-10-17
-TVGN,Tevogen Inc. Common Stock,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),111414703.0,-79.86,0001860871,67.5,1.0,0.7,0.3,0.95,False,False,,2026-10-17
-IMDX,Insight Molecular Diagnostics Inc. Common Stock,Health Care,Biotechnology: In Vitro & In Vivo Diagnostic Substances,100136309.0,-43.15,0001642380,55.5,0.85,0.2,1.0,0.55,False,False,,2026-10-17
-ELDN,Eledon Pharmaceuticals Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,184462815.0,-38.08,0001404281,55.0,0.35,0.3,0.3,0.95,True,False,,2026-10-17
-SKYA,SkyAI Inc. Common Stock,Health Care,Medical/Dental Instruments,118498166.0,-43.86,0001737995,55.0,1.0,0.2,1.0,0.3,False,False,,2026-10-17
-TRDA,Entrada Therapeutics Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,186117278.0,-25.55,0001689375,51.5,0.1,0.2,0.7,0.95,True,False,,2026-10-17
-ADIG,ADI Global Distribution Inc. Common Stock,Industrials,Wholesale Distributors,1191994209.0,-26.29,0002105139,51.2,1.0,0.7,0.15,0.25,False,False,,2026-10-17
-STIM,Neuronetics Inc. Common Stock,Health Care,Medical/Dental Instruments,148584583.0,-29.93,0001227636,50.8,0.35,0.7,0.15,0.45,True,False,,2026-10-17
-ANGX,Angel Studios Inc. Class A Common Stock,Consumer Discretionary,Movies/Entertainment,687263254.0,-51.79,0001865200,46.8,0.85,0.7,0.15,0.25,False,False,,2026-10-17
-SANA,Sana Biotechnology Inc. Common Stock,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),740917577.0,-54.87,0001770121,45.5,0.6,0.2,0.3,0.95,False,False,,2026-10-17
-UNCY,Unicycive Therapeutics Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,100000373.0,-28.66,0001766140,45.5,0.1,0.2,0.3,0.95,True,False,,2026-10-17
-SHLS,Shoals Technologies Group Inc. Class A Common Stock,Technology,Semiconductors,1306007612.0,-27.94,0001831651,45.2,1.0,0.4,0.15,0.25,False,False,,2026-10-17
-GYRE,Gyre Therapeutics Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,713663034.0,-26.75,0001124105,43.2,0.1,0.2,0.15,0.95,True,False,,2026-10-17
-CNTN,Canton Strategic Holdings Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,149004145.0,-40.94,0001861657,43.0,0.1,0.3,1.0,0.95,False,False,,2026-10-17
-AKTS,Aktis Oncology Inc. Common stock,Health Care,Biotechnology: Pharmaceutical Preparations,890468179.0,-32.77,0002035832,41.0,0.1,0.2,1.0,0.95,False,False,,2026-10-17
-RNAC,Cartesian Therapeutics Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,199080216.0,-30.41,0001453687,41.0,0.1,0.2,1.0,0.95,False,False,,2026-10-17
-USAU,U.S. Gold Corp. Common Stock,Basic Materials,Metal Mining,200162109.0,-32.84,0000027093,39.5,0.1,0.2,0.3,0.65,True,False,,2026-10-17
-HROW,Harrow Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,1077775688.0,-31.82,0001360214,39.2,0.1,1.0,0.15,0.7,False,False,,2026-10-17
-JBLU,JetBlue Airways Corporation Common Stock,Consumer Discretionary,Air Freight/Delivery Services,1188533370.0,-37.12,0001158463,34.0,0.1,1.0,0.4,0.25,False,False,,2026-10-17
-NSLR,Neostellar Capital Corp. Common Stock,Finance,Finance: Consumer Services,181076838.0,-26.68,0001509470,33.5,0.6,0.3,0.3,0.25,False,False,,2026-10-17
-FPH,Five Point Holdings LLC Class A Common Shares,Finance,Real Estate,653628115.0,-26.52,0001574197,32.5,0.1,1.0,0.3,0.25,False,False,,2026-10-17
-AGIO,Agios Pharmaceuticals Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,1929564826.0,-26.01,0001439222,32.0,0.1,0.2,0.4,0.95,False,False,,2026-10-17
-ALXO,ALX Oncology Holdings Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,138276997.0,-29.33,0001810182,30.5,0.1,0.2,0.3,0.95,False,False,,2026-10-17
-CTNM,Contineum Therapeutics Inc. Class A Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,297206943.0,-39.49,0001855175,30.5,0.1,0.2,0.3,0.95,False,False,,2026-10-17
-IRON,Disc Medicine Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,2174954613.0,-36.8,0001816736,30.5,0.1,0.2,0.3,0.95,False,False,,2026-10-17
-ARVN,Arvinas Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,468165128.0,-26.79,0001655759,28.2,0.1,0.2,0.15,0.95,False,False,,2026-10-17
-CTMX,CytomX Therapeutics Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,525137274.0,-28.75,0001501989,28.2,0.1,0.2,0.15,0.95,False,False,,2026-10-17
-XRAY,DENTSPLY SIRONA Inc. Common Stock,Health Care,Medical/Dental Instruments,1760294725.0,-30.5,0000818479,28.2,0.1,0.7,0.15,0.45,False,False,,2026-10-17
-GLIBK,Liberty Capital Corporation Series C GCI Group Common Stock,Telecommunications,Cable & Other Pay Television Services,822042876.0,-43.17,0002057463,26.5,0.1,0.4,0.7,0.25,False,False,,2026-10-17
-KBH,KB Home Common Stock,Consumer Discretionary,Homebuilding,2652293426.0,-28.83,0000795266,25.0,0.1,1.0,0.15,0.25,False,True,,2026-10-17
-OXM,Oxford Industries Inc. Common Stock,Industrials,Garments and Clothing,417594279.0,-25.04,0000075288,25.0,0.1,1.0,0.15,0.25,False,True,,2026-10-17
-DERM,Journey Medical Corporation Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,144650024.0,-31.04,0001867066,24.5,0.1,0.15,0.3,0.7,False,False,,2026-10-17
-ONEN,ONE Nuclear Energy Inc. Common Stock  ,Utilities,Electric Utilities: Central,174296956.0,-85.27,0001846416,24.5,0.3,0.3,0.3,0.25,False,False,,2026-10-17
-CWK,Cushman & Wakefield Ltd. Common Shares,Finance,Real Estate,2725026150.0,-28.3,0001628369,24.2,0.1,0.7,0.15,0.25,False,False,,2026-10-17
-ZUMZ,Zumiez Inc. Common Stock,Consumer Discretionary,Clothing/Shoe/Accessory Stores,221374052.0,-31.7,0001318008,24.2,0.1,0.7,0.15,0.25,False,False,,2026-10-17
-ATOM,Atomera Incorporated Common Stock,Technology,Semiconductors,129754940.0,-32.9,0001420520,22.5,0.1,0.2,0.7,0.25,False,False,,2026-10-17
-BOOM,DMC Global Inc. Common Stock,Industrials,Industrial Specialties,107634573.0,-26.48,0000034067,18.2,0.1,0.4,0.15,0.25,False,False,,2026-10-17
-TLSI,TriSalus Life Sciences Inc. Common Stock,Health Care,Medical Specialities,240140940.0,-27.69,0001826667,18.2,0.1,0.2,0.15,0.45,False,False,,2026-10-17
-AMBA,Ambarella Inc. Ordinary Shares,Technology,Semiconductors,2796109808.0,-25.37,0001280263,14.3,0.1,0.2,0.15,0.25,False,False,,2026-10-17
-AMPX,Amprius Technologies Inc. Common Stock,Miscellaneous,Industrial Machinery/Components,1227077191.0,-34.88,0001899287,14.3,0.1,0.2,0.15,0.25,False,False,,2026-10-17
-IMXI,International Money Express Inc. Common Stock,Consumer Discretionary,Business Services,319639014.0,-30.22,0001683695,14.2,0.1,0.15,0.15,0.3,False,False,,2026-10-17
-CALM,Cal-Maine Foods Inc. Common Stock,Consumer Staples,Farming/Seeds/Milling,2970327881.0,-30.71,0000016160,13.2,0.1,0.15,0.15,0.25,False,True,,2026-10-17
-HUBG,Hub Group Inc. Class A Common Stock,Industrials,Integrated Freight & Logistics,1681109990.0,-26.63,0000940942,13.2,0.1,0.15,0.15,0.25,False,True,,2026-10-17
-MBUU,Malibu Boats Inc. Class A Common Stock,Industrials,Marine Transportation,446280620.0,-26.41,0001590976,13.2,0.1,0.15,0.15,0.25,False,False,,2026-10-17
-OMDA,Omada Health Inc. Common Stock,Health Care,Medical/Nursing Services,1142915845.0,-29.23,0001611115,13.2,0.1,0.15,0.15,0.25,False,False,,2026-10-17
-VRTS,Virtus Investment Partners Inc. Common Stock,Finance,Investment Managers,813928601.0,-28.94,0000883237,13.2,0.1,0.15,0.15,0.25,False,False,,2026-10-17
+NRGV,Energy Vault Holdings Inc. Common Stock,Miscellaneous,Industrial Machinery/Components,470964486.0,-25.87,0001828536,70.0,0.85,0.7,0.7,0.25,True,False,,2026-10-24
+ARMP,Armata Pharmaceuticals Inc. Common Stock,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),128277828.0,-39.93,0000921114,64.5,0.85,0.7,0.4,0.95,False,False,,2026-10-24
+MARA,MARA Holdings Inc. Common Stock,Finance,Finance: Consumer Services,2800669903.0,-64.07,0001507605,64.0,1.0,0.7,1.0,0.25,False,False,,2026-10-24
+BALY,Bally's Corporation Common Stock,Consumer Discretionary,Hotels/Resorts,694460623.0,-27.47,0001747079,56.5,0.85,1.0,0.4,0.25,False,False,,2026-10-24
+HE,Hawaiian Electric Industries Inc. Common Stock,Utilities,Electric Utilities: Central,1511370035.0,-29.09,0000354707,55.0,1.0,0.7,0.4,0.25,False,False,,2026-10-24
+LMNR,Limoneira Co Common Stock,Consumer Staples,Farming/Seeds/Milling,198726797.0,-27.96,0001342423,55.0,1.0,0.7,0.4,0.25,False,False,,2026-10-24
+CYH,Community Health Systems Inc. Common Stock,Health Care,Hospital/Nursing Management,410337229.0,-28.78,0001108109,52.8,0.85,1.0,0.15,0.25,False,False,,2026-10-24
+VNDA,Vanda Pharmaceuticals Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,244873882.0,-27.09,0001347178,50.8,0.35,0.2,0.15,0.95,True,False,,2026-10-24
+APYX,Apyx Medical Corporation Common Stock,Health Care,Medical/Dental Instruments,101518895.0,-26.17,0000719135,43.2,0.1,0.7,0.15,0.45,True,False,,2026-10-24
+TLRY,Tilray Brands Inc. Common Stock ,Health Care, Medicinal Chemicals and Botanical Products ,433017442.0,-81.14,0001731348,39.2,0.1,1.0,0.15,0.7,False,False,,2026-10-24
+KYTX,Kyverna Therapeutics Inc. Common Stock,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),354362934.0,-27.55,0001994702,38.0,0.35,0.2,0.3,0.95,False,False,,2026-10-24
+IART,Integra LifeSciences Holdings Corporation Common Stock,Health Care,Medical/Dental Instruments,958546136.0,-26.12,0000917520,34.2,0.1,1.0,0.15,0.45,False,False,,2026-10-24
+SABR,Sabre Corporation Common Stock,Technology,Computer Software: Programming Data Processing,621518150.0,-28.3,0001597033,31.2,0.1,1.0,0.15,0.3,False,False,,2026-10-24
+KLRA,Kailera Therapeutics Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,1720371581.0,-50.58,0002096997,30.5,0.1,0.2,0.3,0.95,False,False,,2026-10-24
+NKTX,Nkarta Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,124627136.0,-25.73,0001787400,30.5,0.1,0.2,0.3,0.95,False,False,,2026-10-24
+SPRB,Spruce Biosciences Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,132204598.0,-66.11,0001683553,30.5,0.1,0.2,0.3,0.95,False,False,,2026-10-24
+BEEP,Mobile Infrastructure Corporation Common Stock,Finance,Real Estate,106967000.0,-31.08,0001847874,30.2,0.1,1.0,0.15,0.25,False,False,,2026-10-24
+EVMN,Evommune Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,189081909.0,-74.79,0002044725,28.2,0.1,0.2,0.15,0.95,False,False,,2026-10-24
+WLDN,Willdan Group Inc. Common Stock,Consumer Discretionary,Military/Government/Technical,1097624477.0,-29.2,0001370450,28.2,0.1,0.15,0.15,0.25,True,False,,2026-10-24
+SLNH,Soluna Holdings Inc. Common Stock,Technology,EDP Services,131738893.0,-81.97,0000064463,27.0,0.1,0.2,1.0,0.25,False,False,,2026-10-24
+AEYE,AudioEye Inc. Common Stock,Technology,Computer Software: Prepackaged Software,101814359.0,-42.74,0001362190,25.2,0.1,0.7,0.15,0.3,False,False,,2026-10-24
+DNUT,Krispy Kreme Inc. Common Stock,Consumer Staples,Food Chains,511825000.0,-29.15,0001857154,25.0,0.1,1.0,0.15,0.25,False,True,,2026-10-24
+WEN,Wendy's Company (The) Common Stock,Consumer Discretionary,Restaurants,1252701440.0,-26.31,0000030697,25.0,0.1,1.0,0.15,0.25,False,True,,2026-10-24
+WSC,WillScot Holdings Corporation Class A Common Stock,Industrials,Misc Corporate Leasing Services,2987838897.0,-26.68,0001647088,25.0,0.1,1.0,0.4,0.25,False,True,,2026-10-24
+XRX,Xerox Holdings Corporation Common Stock,Technology,Computer peripheral equipment,366367486.0,-25.16,0001770450,25.0,0.1,1.0,0.15,0.25,False,True,,2026-10-24
+NANO,Forge Nano Holdings Inc. Common Stock,Technology,Industrial Machinery/Components,1509950990.0,-40.89,0002101833,24.5,0.3,0.3,0.3,0.25,False,False,,2026-10-24
+DCH,Dauch Corporation Common Stock,Consumer Discretionary,Auto Parts:O.E.M.,1114365583.0,-28.66,0001062231,24.2,0.1,0.7,0.15,0.25,False,False,,2026-10-24
+STC,Stewart Information Services Corporation Common Stock,Finance,Specialty Insurers,1502913079.0,-39.11,0000094344,24.2,0.3,0.4,0.15,0.25,False,False,,2026-10-24
+BIOA,BioAge Labs Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,253809907.0,-32.89,0001709941,23.2,0.1,0.2,0.15,0.7,False,False,,2026-10-24
+NUCL,Eagle Nuclear Energy Corp. Common stock,Basic Materials,Other Metals and Minerals,145451433.0,-44.74,0002089283,18.5,0.1,0.3,0.3,0.25,False,False,,2026-10-24
+ADNT,Adient plc Ordinary Shares ,Consumer Discretionary,Auto Parts:O.E.M.,1325296261.0,-30.99,0001670541,18.2,0.1,0.4,0.15,0.25,False,False,,2026-10-24
+WGO,Winnebago Industries Inc. Common Stock,Industrials,Homebuilding,812649137.0,-25.54,0000107687,18.2,0.1,0.4,0.15,0.25,False,True,,2026-10-24
+GSIT,GSI Technology Common Stock,Technology,Semiconductors,148349797.0,-58.18,0001126741,16.2,0.1,0.2,0.15,0.35,False,False,,2026-10-24
+RILY,BRC Group Holdings Inc. Common Stock,Finance,Investment Managers,137939332.0,-27.12,0001464790,16.2,0.1,0.3,0.15,0.25,False,False,,2026-10-24
+NMAX,Newsmax Inc. Class B Common Stock,Industrials,Broadcasting,1055242470.0,-26.71,0002026478,14.3,0.1,0.2,0.15,0.25,False,False,,2026-10-24
+CRNC,Cerence Inc. Common Stock,Technology,Computer Software: Prepackaged Software,391241723.0,-27.85,0001768267,14.2,0.1,0.15,0.15,0.3,False,False,,2026-10-24
+VC,Visteon Corporation Common Stock,Consumer Discretionary,Auto Parts:O.E.M.,2181016549.0,-28.2,0001111335,13.2,0.1,0.15,0.15,0.25,False,True,,2026-10-24
