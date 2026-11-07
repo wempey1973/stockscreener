@@ -1,19 +1,31 @@
 symbol,companyName,sector,industry,marketCap,oneYearReturnPct,cik,capital_need_score,cash_runway_component,leverage_component,capex_component,sector_component,active_unused_shelf,profitability_override,score_note,first_seen_date
-RYZ,Ryerson Holding Corporation Common Stock,Industrials,Metal Fabrications,1603000390.0,44.32,0001481582,57.2,1.0,1.0,0.15,0.25,False,False,,2026-10-31
-ACHC,Acadia Healthcare Company Inc. Common Stock,Health Care,Medical Specialities,2742734102.0,39.35,0001520697,40.0,0.35,0.7,0.7,0.25,False,False,,2026-10-31
-ULBI,Ultralife Corporation Common Stock,Miscellaneous,Industrial Machinery/Components,260280262.0,122.19,0000875657,39.2,0.1,0.7,0.15,0.25,True,False,,2026-10-31
-ULH,Universal Logistics Holdings Inc. Common Stock,Industrials,Trucking Freight/Courier Services,459327163.0,43.18,0001308208,34.0,0.3,0.7,0.4,0.25,False,False,,2026-10-31
-NWL,Newell Brands Inc. Common Stock,Industrials,Plastic Products,2163572000.0,62.79,0000814453,25.0,0.1,1.0,0.15,0.25,False,True,,2026-10-31
-UTZ,Utz Brands Inc Class A Common Stock ,Consumer Staples,Packaged Foods,2055780402.0,39.36,0001739566,25.0,0.1,1.0,0.15,0.25,False,True,,2026-10-31
-ACCO,Acco Brands Corporation Common Stock,Consumer Discretionary,Publishing,402460996.0,59.4,0000712034,24.2,0.1,0.7,0.15,0.25,False,True,,2026-10-31
-MLKN,MillerKnoll Inc. Common Stock,Consumer Discretionary,Office Equipment/Supplies/Services,1467499627.0,43.26,0000066382,24.2,0.1,0.7,0.15,0.25,False,True,,2026-10-31
-NGVT,Ingevity Corporation Common Stock ,Industrials,Major Chemicals,2591063981.0,38.35,0001653477,24.2,0.1,0.7,0.15,0.25,False,False,,2026-10-31
-PED,Pedevco Corp. Common Stock,Energy,Oil & Gas Production,218121933.0,37.98,0001141197,21.5,0.1,0.15,0.3,0.55,False,False,,2026-10-31
-CLMB,Climb Global Solutions Inc. Common Stock,Technology,Retail: Computer Software & Peripheral Equipment,780761136.0,46.57,0000945983,19.2,0.3,0.15,0.15,0.25,False,False,,2026-10-31
-GDYN,Grid Dynamics Holdings Inc. Class A Common Stock,Technology,Computer Software: Prepackaged Software,769894101.0,43.04,0001743725,19.2,0.3,0.15,0.15,0.25,False,False,,2026-10-31
-BDL,Flanigan's Enterprises Inc. Common Stock,Consumer Discretionary,Restaurants,107597075.0,92.63,0000012040,18.2,0.1,0.4,0.15,0.25,False,True,,2026-10-31
-DFIN,Donnelley Financial Solutions Inc. Common Stock ,Consumer Discretionary,Other Consumer Services,1501429340.0,45.57,0001669811,14.2,0.1,0.15,0.15,0.3,False,False,,2026-10-31
-OSPN,OneSpan Inc. Common Stock,Technology,EDP Services,742571286.0,134.37,0001044777,14.2,0.1,0.15,0.15,0.3,False,True,,2026-10-31
-CLAR,Clarus Corporation Common Stock,Consumer Discretionary,Recreational Games/Products/Toys,171913816.0,37.02,0000913277,13.2,0.1,0.15,0.15,0.25,False,True,,2026-10-31
-GIC,Global Industrial Company Common Stock,Industrials,Industrial Machinery/Components,1687056256.0,58.09,0000945114,13.2,0.1,0.15,0.15,0.25,False,True,,2026-10-31
-IOSP,Innospec Inc. Common Stock,Industrials,Major Chemicals,2497834476.0,39.03,0001054905,13.2,0.1,0.15,0.15,0.25,False,True,,2026-10-31
+RSVR,Reservoir Media Inc. Common Stock,Consumer Discretionary,Services-Misc. Amusement & Recreation,680576781.0,38.53,0001824403,80.5,0.85,1.0,1.0,0.25,True,False,,2026-11-07
+MNTK,Montauk Renewables Inc. Common Stock,Utilities,Natural Gas Distribution,343042145.0,52.81,0001826600,64.0,1.0,0.7,1.0,0.25,False,False,,2026-11-07
+XERS,Xeris Biopharma Holdings Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,2370200442.0,104.58,0001867096,48.3,0.3,0.4,0.15,0.7,True,False,,2026-11-07
+SI,Shoulder Innovations Inc. Common Stock,Health Care,Medical/Dental Instruments,426788619.0,85.88,0001699350,39.5,0.3,0.3,0.3,0.25,True,False,,2026-11-07
+LILAK,Liberty Latin America Ltd. Class C Common Stock,Telecommunications,Cable & Other Pay Television Services,1670179500.0,65.72,0001712184,34.0,0.1,1.0,0.4,0.25,False,False,,2026-11-07
+ARL,American Realty Investors Inc. Common Stock,Finance,Real Estate,331024815.0,35.77,0001102238,32.5,0.1,1.0,0.3,0.25,False,False,,2026-11-07
+VCEL,Vericel Corporation Common Stock,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),2650966407.0,40.27,0000887359,31.0,0.1,0.15,0.4,0.95,False,False,,2026-11-07
+COOK,Traeger Inc. Common Stock,Consumer Discretionary,Consumer Electronics/Appliances,166998008.0,65.68,0001857853,30.2,0.1,1.0,0.15,0.25,False,False,,2026-11-07
+MAGN,Magnera Corporation Common Stock,Basic Materials,Paper,432822000.0,38.81,0000041719,30.2,0.1,1.0,0.15,0.25,False,False,,2026-11-07
+BMBL,Bumble Inc. Class A Common Stock,Technology,Computer Software: Programming Data Processing,926050930.0,39.98,0001830043,28.2,0.1,0.15,0.15,0.25,True,False,,2026-11-07
+FSLY,Fastly Inc. Class A Common Stock,Technology,Computer Software: Prepackaged Software,2483286000.0,37.11,0001517413,25.2,0.1,0.7,0.15,0.3,False,False,,2026-11-07
+PRTH,Priority Technology Holdings Inc. Common Stock,Consumer Discretionary,Business Services,648393526.0,61.81,0001653558,25.2,0.1,0.7,0.15,0.3,False,False,,2026-11-07
+UPBD,Upbound Group Inc. Common Stock,Consumer Discretionary,Diversified Commercial Services,1450563214.0,48.98,0000933036,25.0,0.1,0.7,0.15,0.3,False,True,,2026-11-07
+ABX,Abacus Global Management Inc. Class A Common Stock,Finance,Investment Managers,859593869.0,40.31,0001814287,24.2,0.3,0.4,0.15,0.25,False,False,,2026-11-07
+DLX,Deluxe Corporation Common Stock,Consumer Discretionary,Publishing,1278014802.0,35.01,0000027996,24.2,0.1,0.7,0.15,0.25,False,True,,2026-11-07
+TRNS,Transcat Inc. Common Stock,Industrials,Electrical Products,951206124.0,83.4,0000099302,24.2,0.1,0.7,0.15,0.25,False,False,,2026-11-07
+USPH,U.S. Physical Therapy Inc. Common Stock,Health Care,Medical/Nursing Services,1447576319.0,38.16,0000885978,24.2,0.1,0.7,0.15,0.25,False,True,,2026-11-07
+APOG,Apogee Enterprises Inc. Common Stock,Consumer Discretionary,Auto Parts:O.E.M.,961615466.0,36.71,0000006845,18.2,0.1,0.4,0.15,0.25,False,True,,2026-11-07
+ARHS,Arhaus Inc. Class A Common Stock,Consumer Discretionary,Other Specialty Stores,1822927286.0,51.32,0001875444,18.2,0.1,0.4,0.15,0.25,False,False,,2026-11-07
+EML,Eastern Company (The) Common Stock,Consumer Discretionary,Industrial Machinery/Components,163346612.0,36.35,0000031107,18.2,0.1,0.4,0.15,0.25,False,True,,2026-11-07
+PRG,PROG Holdings Inc. Common Stock,Consumer Discretionary,Diversified Commercial Services,1521650298.0,40.31,0001808834,18.2,0.1,0.4,0.15,0.25,False,True,,2026-11-07
+WWW,Wolverine World Wide Inc. Common Stock,Consumer Discretionary,Shoe Manufacturing,1782891215.0,37.1,0000110471,18.2,0.1,0.4,0.15,0.25,False,True,,2026-11-07
+AIN,Albany International Corporation Common Stock,Consumer Discretionary,Textiles,1901380000.0,42.3,0000819793,13.2,0.1,0.15,0.15,0.25,False,True,,2026-11-07
+CENTA,Central Garden & Pet Company Class A Common Stock Nonvoting,Consumer Discretionary,Consumer Specialties,2576311334.0,43.71,0000887733,13.2,0.1,0.15,0.15,0.25,False,False,,2026-11-07
+CRCT,Cricut Inc. Class A Common Stock,Technology,Industrial Machinery/Components,1927781914.0,92.2,0001828962,13.2,0.1,0.15,0.15,0.25,False,True,,2026-11-07
+DV,DoubleVerify Holdings Inc. Common Stock,Technology,Computer Software: Programming Data Processing,2115879729.0,44.41,0001819928,13.2,0.1,0.15,0.15,0.25,False,False,,2026-11-07
+EXTR,Extreme Networks Inc. Common Stock,Telecommunications,Computer Communications Equipment,2778623177.0,37.94,0001078271,13.2,0.1,0.15,0.15,0.25,False,False,,2026-11-07
+NSP,Insperity Inc. Common Stock,Consumer Discretionary,Professional Services,1928996327.0,58.53,0001000753,13.2,0.1,0.15,0.15,0.25,False,True,,2026-11-07
+QNST,QuinStreet Inc. Common Stock,Consumer Discretionary,Business Services,1161062624.0,49.93,0001117297,13.2,0.1,0.15,0.15,0.25,False,False,,2026-11-07
+RGR,Sturm Ruger & Company Inc. Common Stock,Industrials,Ordnance And Accessories,789325846.0,48.86,0000095029,13.2,0.1,0.15,0.15,0.25,False,True,,2026-11-07
