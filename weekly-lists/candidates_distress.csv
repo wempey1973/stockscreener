@@ -1,17 +1,30 @@
 symbol,companyName,sector,industry,marketCap,oneYearReturnPct,cik,capital_need_score,cash_runway_component,leverage_component,capex_component,sector_component,active_unused_shelf,profitability_override,score_note,first_seen_date
-MNTK,Montauk Renewables Inc. Common Stock,Utilities,Natural Gas Distribution,146611373.0,-50.31,0001826600,64.0,1.0,0.7,1.0,0.25,False,False,,2026-11-14
-CYPH,Cypherpunk Technologies Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,209601723.0,-32.0,0001509745,45.5,1.0,0.3,0.3,0.25,False,False,,2026-11-14
-ABEO,Abeona Therapeutics Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,130866264.0,-45.62,0000318306,36.5,0.1,0.2,0.7,0.95,False,False,,2026-11-14
-NKTR,Nektar Therapeutics  Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,1271826527.0,-34.24,0000906709,34.2,0.3,0.2,0.15,0.95,False,False,,2026-11-14
-AVBP,ArriVent BioPharma Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,676020577.0,-37.12,0001868279,32.5,0.1,0.3,0.3,0.95,False,False,,2026-11-14
-RMIX,Suncrete Inc. Class A Common Stock,Industrials,Building Materials,613311330.0,-54.19,0002094433,30.2,0.1,1.0,0.15,0.25,False,False,,2026-11-14
-CXDO,Crexendo Inc. Common Stock,Telecommunications,Telecommunications Equipment,165542907.0,-27.75,0001075736,28.2,0.1,0.15,0.15,0.25,True,False,,2026-11-14
-GLUE,Monte Rosa Therapeutics Inc. Common Stock,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),795540608.0,-34.75,0001826457,28.2,0.1,0.2,0.15,0.95,False,False,,2026-11-14
-NPCE,Neuropace Inc. Common Stock,Health Care,Medical/Dental Instruments,414107871.0,-41.58,0001528287,28.2,0.1,0.7,0.15,0.45,False,False,,2026-11-14
-LWLG,Lightwave Logic Inc. Common Stock,Industrials,Containers/Packaging,522626994.0,-33.68,0001325964,27.0,0.1,0.2,1.0,0.25,False,False,,2026-11-14
-CASK,Sempreon Inc. Common Stock,Consumer Staples,Beverages (Production/Distribution),364171756.0,-30.35,0000835011,25.0,1.0,0.7,0.4,0.25,False,True,,2026-11-14
-NC,NACCO Industries Inc. Common Stock,Energy,Coal Mining,266247400.0,-31.62,0000789933,25.0,0.85,0.7,0.7,0.25,False,True,,2026-11-14
-FLNC,Fluence Energy Inc. Class A Common Stock,Miscellaneous,Industrial Machinery/Components,874063807.0,-73.87,0001868941,24.2,0.1,0.7,0.15,0.25,False,False,,2026-11-14
-SUJA,Suja Life Inc. Class A Common Stock,Consumer Staples,Beverages (Production/Distribution),308613846.0,-60.56,0001934114,24.2,0.1,0.7,0.15,0.25,False,False,,2026-11-14
-HAWK,HawkEye 360 Inc. Common Stock,Technology,EDP Services,1437154648.0,-46.59,0001750704,13.2,0.1,0.15,0.15,0.25,False,False,,2026-11-14
-TG,Tredegar Corporation Common Stock,Industrials,Metal Fabrications,197423509.0,-32.43,0000850429,13.2,0.1,0.15,0.15,0.25,False,False,,2026-11-14
+BW,Babcock & Wilcox Enterprises Inc. Common Stock,Industrials,Building Products,610873208.0,-38.97,0001630805,66.2,1.0,0.7,0.15,0.25,True,False,,2026-11-21
+BV,BrightView Holdings Inc. Common Stock,Consumer Staples,Farming/Seeds/Milling,786144000.0,-33.42,0001734713,55.0,1.0,0.7,0.4,0.25,False,False,,2026-11-21
+RUM,RUM Group Inc. Class A Common Stock,Technology,Computer Software: Programming Data Processing,2276512205.0,-26.36,0001830081,46.8,0.85,0.7,0.15,0.25,False,False,,2026-11-21
+VELO,Velo3D Inc. Common stock,Technology,Industrial Machinery/Components,109364349.0,-39.53,0001825079,39.2,0.6,0.7,0.15,0.25,False,False,,2026-11-21
+ANNX,Annexon Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,650505185.0,-27.4,0001528115,38.0,0.35,0.2,0.3,0.95,False,False,,2026-11-21
+RCAT,Red Cat Holdings Inc. Common Stock,Technology,Computer Software: Prepackaged Software,296736487.0,-71.78,0000748268,33.0,0.6,0.2,0.4,0.25,False,False,,2026-11-21
+RLMD,Relmada Therapeutics Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,331820971.0,-38.64,0001553643,32.5,0.1,0.3,0.3,0.95,False,False,,2026-11-21
+ALMS,Alumis Inc. Common Stock,Health Care,Biotechnology: Pharmaceutical Preparations,562124800.0,-45.75,0001847367,32.0,0.1,0.2,0.4,0.95,False,False,,2026-11-21
+SABS,SAB Biotherapeutics Inc. Common Stock,Health Care,Biotechnology: Biological Products (No Diagnostic Substances),262158498.0,-28.86,0001833214,30.5,0.1,0.2,0.3,0.95,False,False,,2026-11-21
+HOV,Hovnanian Enterprises Inc. Class A Common Stock,Consumer Discretionary,Homebuilding,534304139.0,-26.22,0000357294,30.2,0.1,1.0,0.15,0.25,False,False,,2026-11-21
+AVNW,Aviat Networks Inc. Common Stock,Technology,Radio And Television Broadcasting And Communications Equipment,213077898.0,-25.64,0001377789,28.2,0.1,0.15,0.15,0.25,True,False,,2026-11-21
+RGTI,Rigetti Computing Inc. Common Stock,Technology,EDP Services,2762831125.0,-69.65,0001838359,27.0,0.1,0.2,1.0,0.25,False,False,,2026-11-21
+SERV,Serve Robotics Inc. Common Stock,Industrials,Industrial Machinery/Components,201256082.0,-76.44,0001832483,27.0,0.1,0.2,1.0,0.25,False,False,,2026-11-21
+FOUR,Shift4 Payments Inc. Class A Common Stock,Consumer Discretionary,Business Services,2844122675.0,-44.83,0001794669,25.2,0.1,0.7,0.15,0.3,False,False,,2026-11-21
+ARKO,ARKO Corp. Common Stock,Consumer Staples,Food Chains,360083085.0,-26.02,0001823794,25.0,0.1,1.0,0.15,0.25,False,True,,2026-11-21
+IEP,Icahn Enterprises L.P. Common Stock,Energy,Integrated oil Companies,2278453441.0,-51.08,0000813762,25.0,0.1,1.0,0.15,0.25,False,True,,2026-11-21
+TROX,Tronox Holdings plc Ordinary Shares (UK),Basic Materials,Major Chemicals,262714169.0,-52.09,0001530804,25.0,0.35,1.0,0.4,0.25,False,True,,2026-11-21
+UVV,Universal Corporation Common Stock,Industrials,Farming/Seeds/Milling,821843421.0,-35.01,0000102037,25.0,0.1,1.0,0.15,0.25,False,True,,2026-11-21
+AOMR,Angel Oak Mortgage REIT Inc. Common Stock,Finance,Real Estate,127507513.0,-28.87,0001766478,24.5,0.3,0.3,0.3,0.25,False,False,,2026-11-21
+SLM,SLM Corporation Common Stock,Finance,Finance: Consumer Services,2923310556.0,-41.84,0001032033,24.5,0.3,0.3,0.3,0.25,False,False,,2026-11-21
+HY,Hyster-Yale Inc. Class A common stock,Industrials,Construction/Ag Equipment/Trucks,286766278.0,-40.38,0001173514,24.2,0.1,0.7,0.15,0.25,False,True,,2026-11-21
+MEC,Mayville Engineering Company Inc. Common Stock,Industrials,Industrial Specialties,325240392.0,-25.37,0001766368,24.2,0.1,0.7,0.15,0.25,False,False,,2026-11-21
+SLSN,Solesence Inc. Common Stock,Consumer Discretionary,Package Goods/Cosmetics,104557627.0,-36.2,0000883107,24.2,0.1,0.7,0.15,0.25,False,False,,2026-11-21
+TPVG,TriplePoint Venture Growth BDC Corp. Common Stock,Consumer Discretionary,Other Consumer Services,144583452.0,-34.95,0001580345,18.5,0.1,0.3,0.3,0.25,False,True,,2026-11-21
+LDI,loanDepot Inc. Class A Common Stock,Finance,Finance: Consumer Services,144092065.0,-86.49,0001831631,16.2,0.1,0.3,0.15,0.25,False,False,,2026-11-21
+LMND,Lemonade Inc. Common Stock,Finance,Property-Casualty Insurers,2978928011.0,-47.35,0001691421,14.3,0.1,0.2,0.15,0.25,False,False,,2026-11-21
+KLTR,Kaltura Inc. Common Stock,Technology,Computer Software: Prepackaged Software,180276268.0,-31.65,0001432133,14.2,0.1,0.15,0.15,0.3,False,False,,2026-11-21
+ENPH,Enphase Energy Inc. Common Stock,Technology,Semiconductors,2908267808.0,-27.11,0001463101,13.2,0.1,0.15,0.15,0.25,False,False,,2026-11-21
+LOPE,Grand Canyon Education Inc. Common Stock,Real Estate,Other Consumer Services,2837279701.0,-32.5,0001434588,13.2,0.1,0.15,0.15,0.25,False,False,,2026-11-21

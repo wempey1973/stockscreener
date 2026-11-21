@@ -1,19 +1,12 @@
 symbol,companyName,sector,industry,marketCap,oneYearReturnPct,cik,capital_need_score,cash_runway_component,leverage_component,capex_component,sector_component,active_unused_shelf,profitability_override,score_note,first_seen_date
-CMCO,Columbus McKinnon Corporation Common Stock,Industrials,Construction/Ag Equipment/Trucks,611796913.0,40.62,0001005229,57.2,1.0,1.0,0.15,0.25,False,False,,2026-11-14
-CHPT,ChargePoint Holdings Inc. Common Stock,Miscellaneous,Industrial Machinery/Components,323546404.0,35.07,0001777393,54.2,0.6,0.7,0.15,0.25,True,False,,2026-11-14
-PTLO,Portillo's Inc. Class A Common Stock,Consumer Discretionary,Restaurants,508958445.0,41.75,0001871509,49.0,0.6,1.0,0.4,0.25,False,False,,2026-11-14
-PAMT,PAMT CORP Common Stock,Industrials,Trucking Freight/Courier Services,298030000.0,42.77,0000798287,45.2,0.6,1.0,0.15,0.25,False,False,,2026-11-14
-SMTI,Sanara MedTech Inc. Common Stock,Health Care,Industrial Specialties,298809093.0,50.19,0000714256,43.2,0.1,0.7,0.15,0.45,True,False,,2026-11-14
-ASPN,Aspen Aerogels Inc. Common Stock,Consumer Discretionary,RETAIL: Building Materials,497939344.0,81.17,0001145986,37.5,0.1,0.2,0.7,0.25,True,False,,2026-11-14
-VOYG,Voyager Technologies Inc. Class A Common Stock,Industrials,Military/Government/Technical,1725714119.0,36.08,0001788060,37.0,0.1,0.7,1.0,0.25,False,False,,2026-11-14
-SKIN,SkinHealth Systems Inc. Class A Common Stock,Health Care,Medical/Dental Instruments,104417789.0,1174.22,0001818093,30.2,0.1,1.0,0.15,0.25,False,False,,2026-11-14
-RMNI,Rimini Street Inc. (DE) Common Stock,Consumer Discretionary,Business Services,518170640.0,43.64,0001635282,29.2,0.1,0.15,0.15,0.3,True,False,,2026-11-14
-TMCI,Treace Medical Concepts Inc. Common Stock,Health Care,Medical/Dental Instruments,350088248.0,73.93,0001630627,28.2,0.1,0.7,0.15,0.45,False,False,,2026-11-14
-ALGT,Allegiant Travel Company Common Stock,Consumer Discretionary,Air Freight/Delivery Services,2526212662.0,39.71,0001362468,28.0,0.1,0.7,0.4,0.25,False,False,,2026-11-14
-KPLT,Katapult Holdings Inc. Common Stock,Consumer Discretionary,Diversified Commercial Services,692368289.0,47.66,0001785424,25.2,0.1,0.7,0.15,0.3,False,False,,2026-11-14
-VHI,Valhi Inc. Common Stock,Basic Materials,Major Chemicals,475512830.0,39.19,0000059255,18.2,0.1,0.4,0.15,0.25,False,True,,2026-11-14
-AZTA,Azenta Inc.,Technology,Industrial Machinery/Components,1921436117.0,53.45,0000933974,17.2,0.1,0.15,0.15,0.45,False,False,,2026-11-14
-GPRE,Green Plains Inc. Common Stock,Industrials,Major Chemicals,961131232.0,37.46,0001309402,13.2,0.1,0.15,0.15,0.25,False,False,,2026-11-14
-LEGH,Legacy Housing Corporation Common Stock (TX),Consumer Discretionary,Homebuilding,674843703.0,44.75,0001436208,13.2,0.1,0.15,0.15,0.25,False,False,,2026-11-14
-NL,NLI Holdings Inc. Common Stock,Basic Materials,Major Chemicals,353537847.0,37.71,0000072162,13.2,0.1,0.15,0.15,0.25,False,True,,2026-11-14
-PHIN,PHINIA Inc. Common Stock,Consumer Discretionary,Auto Parts:O.E.M.,2610313316.0,37.63,0001968915,13.2,0.1,0.15,0.15,0.25,False,True,,2026-11-14
+ATER,Aterian Inc. Common Stock,Consumer Discretionary,Home Furnishings,261882422.0,54.76,0001757715,56.2,1.0,0.2,0.15,0.25,True,False,,2026-11-21
+CLMT,Calumet Inc. Common Stock,Energy,Integrated oil Companies,2737913035.0,63.7,0002013745,30.2,0.1,1.0,0.15,0.25,False,False,,2026-11-21
+CARL,Carlsmed Inc. Common Stock,Health Care,Medical/Dental Instruments,471898395.0,39.47,0001794546,29.2,0.1,0.2,0.15,0.25,True,False,,2026-11-21
+ICCC,ImmuCell Corporation Common Stock,Health Care,Biotechnology: In Vitro & In Vivo Diagnostic Substances,101550502.0,133.33,0000811641,27.2,0.1,0.15,0.15,0.95,False,False,,2026-11-21
+ENR,Energizer Holdings Inc. Common Stock,Miscellaneous,Industrial Machinery/Components,1945127061.0,66.34,0001632790,25.0,0.1,1.0,0.15,0.25,False,True,,2026-11-21
+PRGO,Perrigo Company plc Ordinary Shares,Health Care,Biotechnology: Pharmaceutical Preparations,2227770046.0,35.01,0001585364,25.0,0.1,1.0,0.15,0.7,False,True,,2026-11-21
+FNKO,Funko Inc. Class A Common Stock,Consumer Discretionary,Recreational Games/Products/Toys,379853354.0,108.9,0001704711,24.2,0.1,0.7,0.15,0.25,False,False,,2026-11-21
+ZIP,ZipRecruiter Inc. Class A Common Stock,Technology,Computer Software: Programming Data Processing,480215954.0,36.02,0001617553,24.2,0.1,0.7,0.15,0.25,False,False,,2026-11-21
+GUER,Guerrilla RF Inc. Common Stock,Technology,Semiconductors,111490023.0,226.79,0001832487,15.2,0.1,0.15,0.15,0.35,False,False,,2026-11-21
+NHC,National HealthCare Corporation Common Stock,Health Care,Hospital/Nursing Management,2958203810.0,48.44,0001047335,13.2,0.1,0.15,0.15,0.25,False,True,,2026-11-21
+SKWD,Skyward Specialty Insurance Group Inc. Common Stock,Finance,Property-Casualty Insurers,2822030549.0,35.64,0001519449,13.2,0.1,0.15,0.15,0.25,False,False,,2026-11-21
